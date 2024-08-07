@@ -1,0 +1,53 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col n-div-right n-container">
+            <h1 class="mb-4 n-title">Articles 26 et 30 de la loi N° 73-37 du 31 juillet 1973</h1>
+            <h2 class="h4 mb-3">portant code de la Sécurité Sociale</h2>
+
+            <div class="important mb-4">
+                <h3 class="h5">TRÈS IMPORTANT</h3>
+            </div>
+            <p class="" >La durée normale du congé de maternité est de quatorze (14) semaines dont huit (8) après l'accouchement.</p>
+            <p>Cette durée peut être cependant prolongée de trois (3) semaines maximum sur production :</p>
+            <ol>
+                <li>d'un certificat médical constatant l'incapacité de reprendre le travail à l'expiration des huit semaines suivant les couches et établissant que cette incapacité résulte de la maladie consécutive à la grossesse ou aux couches,</li>
+                <li>d'une attestation de l'employeur indiquant que le travail n'a pas été repris à la date d'expiration de la période des huit (8) semaines.</li>
+            </ol>
+            <ul class="list-unstyled">
+                <li class="mb-2">♦ La Caisse se réserve le droit de faire contrôler, par un médecin de son choix, l'inaptitude consécutive à la grossesse ou aux couches.</li>
+                <li class="mb-2">♦ Le repos de la femme salariée en couches est soumis au Contrôle de la Caisse qui pourra s'assurer à tout moment qu'elle n'a effectué aucun travail salarié et qu'elle a observé tout le repos effectif compatible avec la vie de femme au foyer pendant la durée du congé de maternité.</li>
+                <li>♦ Les indemnités journalières pourront être supprimées pendant la période au cours de laquelle la Caisse a été mise par le fait de l'intéressé dans l'impossibilité d'exercer son contrôle.</li>
+            </ul>
+            <div class="obligation">
+                Obligation est donc faite à l'intéressée de prévenir au préalable la Caisse de Sécurité Sociale avant tout déplacement hors du Sénégal.
+            </div>
+        </div>
+
+        <div class="col n-div-left">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1" i18n="@@dossier.add.headline">Creer d'abord votre dossier n0 {{salarierId}}</h1>
+                <div>
+                    <a routerLink="/dossiers" class="btn btn-secondary" i18n="@@dossier.add.back">Back to list</a>
+                </div>
+            </div>
+<!--            <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">-->
+<!--                <app-input-row [group]="addForm" rowType="file" field="attestationTravail" i18n-label="@@dossier.attestationTravail.label" label="Attestation Travail" />-->
+<!--                <app-input-row [group]="addForm" rowType="file" field="attestationCessationPaie" i18n-label="@@dossier.attestationCessationPaie.label" label="Attestation Cessation Paie" />-->
+<!--                <app-input-row [group]="addForm" rowType="file" field="certificatMedical" i18n-label="@@dossier.certificatMedical.label" label="Certificat Medical" />-->
+<!--                <app-input-row [group]="addForm" rowType="file" field="dernierBulletinSalaire" i18n-label="@@dossier.dernierBulletinSalaire.label" label="Dernier Bulletin Salaire" />-->
+<!--                <app-input-row [group]="addForm" rowType="file" field="copieCNI" i18n-label="@@dossier.copieCNI.label" label="CopieCNI" />-->
+<!--                <input type="submit" i18n-value="@@dossier.add.headline" value="Creer le dossier" class="btn btn-primary mt-4" />-->
+<!--            </form>-->
+
+            <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+                <app-input-row [group]="addForm" rowType="file" field="attestationTravail" (change)="handleFileInput($event, 'attestationTravail')" i18n-label="@@dossier.attestationTravail.label" label="Attestation Travail" />
+                <app-input-row [group]="addForm" rowType="file" field="attestationCessationPaie" (change)="handleFileInput($event, 'attestationCessationPaie')" i18n-label="@@dossier.attestationCessationPaie.label" label="Attestation Cessation Paie" />
+                <app-input-row [group]="addForm" rowType="file" field="certificatMedical" (change)="handleFileInput($event, 'certificatMedical')" i18n-label="@@dossier.certificatMedical.label" label="Certificat Medical" />
+                <app-input-row [group]="addForm" rowType="file" field="dernierBulletinSalaire" (change)="handleFileInput($event, 'dernierBulletinSalaire')" i18n-label="@@dossier.dernierBulletinSalaire.label" label="Dernier Bulletin Salaire" />
+                <app-input-row [group]="addForm" rowType="file" field="copieCNI" (change)="handleFileInput($event, 'copieCNI')" i18n-label="@@dossier.copieCNI.label" label="CopieCNI" />
+                <input type="submit" i18n-value="@@dossier.add.headline" value="Creer le dossier" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </div>
+<div>
+

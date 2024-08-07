@@ -1,0 +1,15 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@dossier.edit.headline">Edit Dossier</h1>
+    <div>
+        <a routerLink="/dossiers" class="btn btn-secondary" i18n="@@dossier.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@dossier.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="attestationTravail" rowType="textarea" i18n-label="@@dossier.attestationTravail.label" label="Attestation Travail" />
+    <app-input-row [group]="editForm" field="attestationCessationPaie" rowType="textarea" i18n-label="@@dossier.attestationCessationPaie.label" label="Attestation Cessation Paie" />
+    <app-input-row [group]="editForm" field="certificatMedical" rowType="textarea" i18n-label="@@dossier.certificatMedical.label" label="Certificat Medical" />
+    <app-input-row [group]="editForm" field="dernierBulletinSalaire" rowType="textarea" i18n-label="@@dossier.dernierBulletinSalaire.label" label="Dernier Bulletin Salaire" />
+    <app-input-row [group]="editForm" field="copieCNI" rowType="textarea" i18n-label="@@dossier.copieCNI.label" label="CopieCNI" />
+    <input type="submit" i18n-value="@@dossier.edit.headline" value="Edit Dossier" class="btn btn-primary mt-4" />
+</form>

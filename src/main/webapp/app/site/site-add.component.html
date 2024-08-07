@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@site.add.headline">Add Site</h1>
+    <div>
+        <a routerLink="/sites" class="btn btn-secondary" i18n="@@site.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="numSite" rowType="number" i18n-label="@@site.numSite.label" label="Num Site" />
+    <app-input-row [group]="addForm" field="nomSite" i18n-label="@@site.nomSite.label" label="Nom Site" />
+    <input type="submit" i18n-value="@@site.add.headline" value="Add Site" class="btn btn-primary mt-4" />
+</form>

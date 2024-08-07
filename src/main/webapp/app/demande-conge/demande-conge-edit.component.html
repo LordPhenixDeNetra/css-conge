@@ -1,0 +1,13 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@demandeConge.edit.headline">Edit Demande Conge</h1>
+    <div>
+        <a routerLink="/demandeConges" class="btn btn-secondary" i18n="@@demandeConge.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@demandeConge.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="status" rowType="radio" [options]="{'EN_COURS': 'EN_COURS', 'TERMINER': 'TERMINER'}" i18n-label="@@demandeConge.status.label" label="Status" />
+    <app-input-row [group]="editForm" field="salarier" rowType="select" [options]="salarierValues" i18n-label="@@demandeConge.salarier.label" label="Salarier" />
+    <app-input-row [group]="editForm" field="dossier" rowType="select" [options]="dossierValues" i18n-label="@@demandeConge.dossier.label" label="Dossier" />
+    <input type="submit" i18n-value="@@demandeConge.edit.headline" value="Edit Demande Conge" class="btn btn-primary mt-4" />
+</form>

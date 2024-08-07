@@ -1,0 +1,37 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@site.list.headline">Sites</h1>
+    <div>
+        <a routerLink="/sites/add" class="btn btn-primary ms-2" i18n="@@site.list.createNew">Create new Site</a>
+    </div>
+</div>
+@if (!sites || sites.length === 0) {
+<div i18n="@@site.list.empty">No Sites could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@site.id.label">Id</th>
+                <th scope="col" i18n="@@site.numSite.label">Num Site</th>
+                <th scope="col" i18n="@@site.nomSite.label">Nom Site</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (site of sites; track site.id) {
+            <tr>
+                <td>{{ site.id }}</td>
+                <td>{{ site.numSite }}</td>
+                <td>{{ site.nomSite }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/sites/edit', site.id]" class="btn btn-sm btn-secondary" i18n="@@site.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(site.id!)" class="btn btn-sm btn-secondary" i18n="@@site.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

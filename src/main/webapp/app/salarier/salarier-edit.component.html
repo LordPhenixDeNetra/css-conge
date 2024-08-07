@@ -1,0 +1,28 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@salarier.edit.headline">Edit Salarier</h1>
+    <div>
+        <a routerLink="/salariers" class="btn btn-secondary" i18n="@@salarier.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <input type="submit" i18n-value="@@salarier.edit.headline" value="Edit Salarier" class="btn btn-primary mt-4 mb-4" />
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@salarier.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="numArticleL143" i18n-label="@@salarier.numArticleL143.label" label="Num Article L143" />
+    <app-input-row [group]="editForm" field="nin" i18n-label="@@salarier.nin.label" label="Nin" />
+    <app-input-row [group]="editForm" field="prenom" i18n-label="@@salarier.prenom.label" label="Prenom" />
+    <app-input-row [group]="editForm" field="nom" i18n-label="@@salarier.nom.label" label="Nom" />
+    <app-input-row [group]="editForm" field="dateNaissane" datepicker="datepicker" i18n-label="@@salarier.dateNaissane.label" label="Date Naissane" />
+    <app-input-row [group]="editForm" field="lieuNaissance" i18n-label="@@salarier.lieuNaissance.label" label="Lieu Naissance" />
+    <app-input-row [group]="editForm" field="nomMereComplet" i18n-label="@@salarier.nomMereComplet.label" label="Nom Mere Complet" />
+    <app-input-row [group]="editForm" field="prenomPere" i18n-label="@@salarier.prenomPere.label" label="Prenom Pere" />
+    <app-input-row [group]="editForm" field="adresse" i18n-label="@@salarier.adresse.label" label="Adresse" />
+    <app-input-row [group]="editForm" field="email" i18n-label="@@salarier.email.label" label="Email" />
+    <app-input-row [group]="editForm" field="telephone1" i18n-label="@@salarier.telephone1.label" label="Telephone1" />
+    <app-input-row [group]="editForm" field="telephone2" i18n-label="@@salarier.telephone2.label" label="Telephone2" />
+    <app-input-row [group]="editForm" field="compteBancaire" i18n-label="@@salarier.compteBancaire.label" label="Compte Bancaire" />
+    <app-input-row [group]="editForm" field="dateEmbauche" datepicker="datepicker" i18n-label="@@salarier.dateEmbauche.label" label="Date Embauche" />
+    <app-input-row [group]="editForm" field="salaire" rowType="number" i18n-label="@@salarier.salaire.label" label="Salaire" />
+    <app-input-row [group]="editForm" field="debutConge" datepicker="datepicker" i18n-label="@@salarier.debutConge.label" label="Debut Conge" />
+    <app-input-row [group]="editForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site" />
+    <input type="submit" i18n-value="@@salarier.edit.headline" value="Edit Salarier" class="btn btn-primary mt-4" />
+</form>

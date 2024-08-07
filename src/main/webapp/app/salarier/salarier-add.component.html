@@ -1,0 +1,28 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@salarier.add.headline">Add Salarier</h1>
+    <div>
+        <a routerLink="/salariers" class="btn btn-secondary" i18n="@@salarier.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="numArticleL143" i18n-label="@@salarier.numArticleL143.label" label="Num Article L143" />
+    <app-input-row [group]="addForm" field="nin" i18n-label="@@salarier.nin.label" label="Nin" />
+    <app-input-row [group]="addForm" field="prenom" i18n-label="@@salarier.prenom.label" label="Prenom" />
+    <app-input-row [group]="addForm" field="nom" i18n-label="@@salarier.nom.label" label="Nom" />
+    <app-input-row [group]="addForm" field="dateNaissane" datepicker="datepicker" i18n-label="@@salarier.dateNaissane.label" label="Date Naissane" />
+    <app-input-row [group]="addForm" field="lieuNaissance" i18n-label="@@salarier.lieuNaissance.label" label="Lieu Naissance" />
+    <app-input-row [group]="addForm" field="nomMereComplet" i18n-label="@@salarier.nomMereComplet.label" label="Nom Mere Complet" />
+    <app-input-row [group]="addForm" field="prenomPere" i18n-label="@@salarier.prenomPere.label" label="Prenom Pere" />
+    <app-input-row [group]="addForm" field="adresse" i18n-label="@@salarier.adresse.label" label="Adresse" />
+    <app-input-row [group]="addForm" field="email" i18n-label="@@salarier.email.label" label="Email" />
+    <app-input-row [group]="addForm" field="telephone1" i18n-label="@@salarier.telephone1.label" label="Telephone1" />
+    <app-input-row [group]="addForm" field="telephone2" i18n-label="@@salarier.telephone2.label" label="Telephone2" />
+    <app-input-row [group]="addForm" field="compteBancaire" i18n-label="@@salarier.compteBancaire.label" label="Compte Bancaire" />
+    <app-input-row [group]="addForm" field="dateEmbauche" datepicker="datepicker" i18n-label="@@salarier.dateEmbauche.label" label="Date Embauche" />
+    <app-input-row [group]="addForm" field="salaire" rowType="number" i18n-label="@@salarier.salaire.label" label="Salaire" />
+    <app-input-row [group]="addForm" field="debutConge" datepicker="datepicker" i18n-label="@@salarier.debutConge.label" label="Debut Conge" />
+<!--    <app-input-row [group]="addForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site" />-->
+
+    <app-input-row [group]="addForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site"></app-input-row>
+    <input type="submit" i18n-value="@@salarier.add.headline" value="Add Salarier" class="btn btn-primary mt-4" />
+</form>

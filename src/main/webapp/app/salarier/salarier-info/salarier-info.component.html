@@ -1,0 +1,44 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col n-div-left">
+            <ul class="list-group gap-2 ">
+                <li class="list-group-item">NIN : <span class="badge text-bg-secondary">{{ salarier.nin }}</span></li>
+                <li class="list-group-item">N0 Affiliation : <span class="badge text-bg-secondary">{{ salarier.numArticleL143 }}</span></li>
+                <li class="list-group-item">Prenom : {{ salarier.prenom }}</li>
+                <li class="list-group-item">Nom : {{ salarier.nom }}</li>
+                <li class="list-group-item">Telephone : {{ salarier.telephone1 }}</li>
+                <li class="list-group-item">Email : {{ salarier.email }}</li>
+            </ul>
+        </div>
+        <div class="col n-div-right">
+
+            <div class="card" style="width: 100%;">
+                <h4>Information sur les demandes:</h4>
+                <img ngSrc="css-img3.png" width="50" height="280" class="card-img-top" alt="...">
+<!--                <div *ngIf="this.demande.id == null" class="card-body">-->
+                <div *ngIf="this.demandeId == null" class="card-body">
+<!--                    <h4 class="card-title">Pas de demande pour le moment</h4>-->
+                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>
+                    <p class="card-text">Vous n'avez de demande pour le moment. Pour faire une demande veuillez cliquer sur le boutton ci-dessous</p>
+                    <a [routerLink]="['/dossiers/add', salarier.id]" class="btn btn-primary">Faire une demande</a>
+<!--                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">-->
+<!--                        Voire info-->
+<!--                    </button>-->
+<!--                    <h2>{{this.demandeId}}</h2>-->
+                </div>
+<!--                <div *ngIf="this.demande.id != null" class="card-body">-->
+                <div *ngIf="this.demandeId != null" class="card-body">
+<!--                    <h4 class="card-title">Vous avez une demande en cours</h4>-->
+                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>
+                    <p class="card-text">Status de la demande : </p>
+                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">
+                        Voire info
+                    </button>
+<!--                    <h2>{{this.demandeId}}</h2>-->
+                    <span class="py-2 px-2 badge text-white text-bg-info">{{ this.salarierDemande.status?.toString().replaceAll("_", " ") }}</span>
+<!--                    <span class="py-2 px-2 badge text-white text-bg-info">Status</span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

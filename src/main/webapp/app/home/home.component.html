@@ -1,0 +1,97 @@
+<div id="carouselExampleDark" class="carousel carousel-dark slide n-bg">
+    <div class="carousel-indicators">
+        <div class="border border-1 rounded-3 mb-3">
+            <form [formGroup]="getUserForm" (ngSubmit)="handleSubmit()" class="d-flex align-items-center justify-content-center n-banner-form" >
+                <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+                    <div>
+                        <label for="NIN" class="form-label" style="color: aliceblue; font-weight: bold">NUMERO DE CARTE D'IDENTITE</label>
+                        <input formControlName="nin"  type="text" class="form-control NIN" id="NIN" aria-describedby="NINHelp">
+                        <div id="NINHelp" class="form-text">Vous devez entrer ici votre numéro de carte d'identité national.</div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary border border-black ">Verifier</button>
+                    </div>
+                    <div>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!--
+    <div class="carousel-inner n-carousel-items-container">
+        <div class="carousel-item active n-carousel-items" data-bs-interval="10000">
+            <img ngSrc="css-img.png" width="100" height="100" class="d-block w-100 n-items-container-img"  alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Bienvenue sur la portail des demandes de congé de maternité de la caisse de securité sociale!.</p>
+            </div>
+        </div>
+        <div class="carousel-item n-carousel-items" data-bs-interval="2000">
+            <img ngSrc="css-img2.png" width="100" height="100" class="d-block w-100 n-items-container-img" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item n-carousel-items">
+            <img ngSrc="css-img3.png" width="100" height="100" class="d-block w-100 n-items-container-img" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+</div>
+-->
+
+<!--ici-->
+
+
+
+<!--<h1 class="mb-4" i18n="@@home.index.headline">Bienvenue sur la portail des demandes de congé de maternité de la caisse de securité sociale!</h1>-->
+<!--<p i18n="@@home.index.text">Your app was created with <a href="https://bootify.io" target="_blank">Bootify.io</a> and can now be customized. If you are happy with the result, <strong>please recommend us to other developers</strong> - so Bootify.io can grow further.</p>-->
+
+
+<!--
+<p i18n="@@home.index.text">Les employées au Sénégal ont droit à 14 semaines (98 jours) de congé de maternité, dont 8 semaines de congé de maternité post-natal. Pendant la grossesse, le contrat de travail d’une femme enceinte est suspendu. De plus, l’indemnité de maternité se calcule à la moitié du salaire journalier effectivement perçu lors de la dernière paie, et les prestations de maternité sont payées par le gouvernement1. Les femmes enceintes doivent également subir des visites médicales périodiques pour bénéficier des allocations prénatales1. Si vous avez besoin de constituer un dossier de prestations familiales à la Caisse de Sécurité Sociale, vous devrez fournir une attestation de travail signée de l’employeur, un certificat médical de grossesse, une attestation d’arrêt de travail pour congé de maternité signée de l’employeur et le dernier bulletin de salaire.</p>
+<p class="mb-5">
+    <span i18n="@@home.index.swagger">Swagger is</span>
+    <a [href]="environment.apiPath + '/swagger-ui.html'" target="_blank" i18n="@@home.index.swagger.link">available here</a>.
+</p>
+-->
+
+<!--
+
+<div class="col-md-4 mb-5">
+    <h4 class="mb-3" i18n="@@home.index.exploreEntities">Explore your entities</h4>
+    <h3>Verifiez votre eligibilité au programme</h3>
+    <div class="list-group">
+        <h3>Verifiez votre eligibilité au programme</h3>
+        <a routerLink="/salariers" class="list-group-item list-group-item-action" i18n="@@salarier.list.headline">Salariers</a>
+        <a routerLink="/sites" class="list-group-item list-group-item-action" i18n="@@site.list.headline">Sites</a>
+        <a routerLink="/dossiers" class="list-group-item list-group-item-action" i18n="@@dossier.list.headline">Dossiers</a>
+        <a routerLink="/demandeConges" class="list-group-item list-group-item-action" i18n="@@demandeConge.list.headline">Demande Conges</a>
+        <a routerLink="/salarierInfo/info" class="list-group-item list-group-item-action" i18n="@@salarierInfo.info.headline">Congé Info</a>
+
+    </div>
+</div>
+
+
+-->
