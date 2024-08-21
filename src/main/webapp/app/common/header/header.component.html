@@ -1,9 +1,5 @@
-<!--<style>-->
-<!--    .n-header{-->
-<!--        background: #414D94;-->
-<!--        /*bg-light*/-->
-<!--    }-->
-<!--</style>-->
+
+<!--
 <header class=" n-headers" style="background: #3A56FD;">
     <div class="container">
         <nav class="navbar navbar-light navbar-expand-md">
@@ -36,3 +32,39 @@
         </nav>
     </div>
 </header>
+-->
+
+<nav>
+    <div class="logo">
+        <h1><a routerLink="/" class="navbar-brand py-1 px-3 rounded-2 ">CSS</a></h1>
+    </div>
+    <ul id="menuList">
+        <li><a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a></li>
+        <li><a href="">A propos</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Product</a></li>
+        <li><a href="">Contact</a></li>
+    </ul>
+    <div class="menu-icon">
+        <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+    </div>
+</nav>
+
+
+<script>
+    let menuList = document.getElementById("menuList")
+    menuList.style.maxHeight = "0px";
+
+    function toggleMenu(){
+        if(menuList.style.maxHeight == "0px")
+        {
+            menuList.style.maxHeight = "300px";
+        }
+        else{
+            menuList.style.maxHeight = "0px";
+        }
+    }
+
+</script>
+<script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
+

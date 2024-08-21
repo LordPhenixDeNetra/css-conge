@@ -30,9 +30,13 @@
               {"glob": "**/*", "input": "src/main/webapp/public"}
             ],
             "styles": [
-              "src/main/webapp/styles.scss"
+              "src/main/webapp/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -101,9 +105,14 @@
               {"glob": "**/*", "input": "src/main/webapp/public"}
             ],
             "styles": [
-              "src/main/webapp/styles.scss"
+              "src/main/webapp/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.scss"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         }
       }

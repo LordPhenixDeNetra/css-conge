@@ -1,10 +1,12 @@
+
+<!--
 <div id="carouselExampleDark" class="carousel carousel-dark slide n-bg">
     <div class="carousel-indicators">
         <div class="border border-1 rounded-3 mb-3">
             <form [formGroup]="getUserForm" (ngSubmit)="handleSubmit()" class="d-flex align-items-center justify-content-center n-banner-form" >
                 <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
                     <div>
-                        <label for="NIN" class="form-label" style="color: aliceblue; font-weight: bold">NUMERO DE CARTE D'IDENTITE</label>
+                        <label for="NIN" class="form-label" style="color: aliceblue; font-weight: bold">NUMERO DE CARTE D'IDENTITE OU NUMERO D'AFFILIATION</label>
                         <input formControlName="nin"  type="text" class="form-control NIN" id="NIN" aria-describedby="NINHelp">
                         <div id="NINHelp" class="form-text">Vous devez entrer ici votre numéro de carte d'identité national.</div>
                     </div>
@@ -23,75 +25,88 @@
         </div>
 
     </div>
-
-    <!--
-    <div class="carousel-inner n-carousel-items-container">
-        <div class="carousel-item active n-carousel-items" data-bs-interval="10000">
-            <img ngSrc="css-img.png" width="100" height="100" class="d-block w-100 n-items-container-img"  alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Bienvenue sur la portail des demandes de congé de maternité de la caisse de securité sociale!.</p>
-            </div>
-        </div>
-        <div class="carousel-item n-carousel-items" data-bs-interval="2000">
-            <img ngSrc="css-img2.png" width="100" height="100" class="d-block w-100 n-items-container-img" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
-        </div>
-        <div class="carousel-item n-carousel-items">
-            <img ngSrc="css-img3.png" width="100" height="100" class="d-block w-100 n-items-container-img" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-        </div>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-
-</div>
--->
-
-<!--ici-->
-
-
-
-<!--<h1 class="mb-4" i18n="@@home.index.headline">Bienvenue sur la portail des demandes de congé de maternité de la caisse de securité sociale!</h1>-->
-<!--<p i18n="@@home.index.text">Your app was created with <a href="https://bootify.io" target="_blank">Bootify.io</a> and can now be customized. If you are happy with the result, <strong>please recommend us to other developers</strong> - so Bootify.io can grow further.</p>-->
-
-
-<!--
-<p i18n="@@home.index.text">Les employées au Sénégal ont droit à 14 semaines (98 jours) de congé de maternité, dont 8 semaines de congé de maternité post-natal. Pendant la grossesse, le contrat de travail d’une femme enceinte est suspendu. De plus, l’indemnité de maternité se calcule à la moitié du salaire journalier effectivement perçu lors de la dernière paie, et les prestations de maternité sont payées par le gouvernement1. Les femmes enceintes doivent également subir des visites médicales périodiques pour bénéficier des allocations prénatales1. Si vous avez besoin de constituer un dossier de prestations familiales à la Caisse de Sécurité Sociale, vous devrez fournir une attestation de travail signée de l’employeur, un certificat médical de grossesse, une attestation d’arrêt de travail pour congé de maternité signée de l’employeur et le dernier bulletin de salaire.</p>
-<p class="mb-5">
-    <span i18n="@@home.index.swagger">Swagger is</span>
-    <a [href]="environment.apiPath + '/swagger-ui.html'" target="_blank" i18n="@@home.index.swagger.link">available here</a>.
-</p>
--->
-
-<!--
-
-<div class="col-md-4 mb-5">
-    <h4 class="mb-3" i18n="@@home.index.exploreEntities">Explore your entities</h4>
-    <h3>Verifiez votre eligibilité au programme</h3>
-    <div class="list-group">
-        <h3>Verifiez votre eligibilité au programme</h3>
-        <a routerLink="/salariers" class="list-group-item list-group-item-action" i18n="@@salarier.list.headline">Salariers</a>
-        <a routerLink="/sites" class="list-group-item list-group-item-action" i18n="@@site.list.headline">Sites</a>
-        <a routerLink="/dossiers" class="list-group-item list-group-item-action" i18n="@@dossier.list.headline">Dossiers</a>
-        <a routerLink="/demandeConges" class="list-group-item list-group-item-action" i18n="@@demandeConge.list.headline">Demande Conges</a>
-        <a routerLink="/salarierInfo/info" class="list-group-item list-group-item-action" i18n="@@salarierInfo.info.headline">Congé Info</a>
-
-    </div>
 </div>
 
-
 -->
+    <main>
+        <div id="image-section" class="n-content-gauche">
+
+            <nav id="social-media">
+                <ul>
+                    <li >
+                        <a href="https://online.secusociale.sn/cssipreslanding/#/" target="_blank"><i class="bi bi-globe"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/p/Caisse-de-Sécurité-Sociale-du-Sénégal-100091422074413/" target="_blank"><i class="bi bi-facebook"></i></a>
+                    </li>
+<!--                    <li>-->
+<!--                        <a href="#" target="_blank"><i class="bi bi-2-square-fill"></i></a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" target="_blank"><i class="bi bi-3-circle"></i></a>-->
+<!--                    </li>-->
+                </ul>
+            </nav>
+
+            <img class="header-image" src="" ngSrc="css-img2.png" width="600" height="500" alt="a business">
+        </div>
+        <div id="content" class="n-content-droite">
+            <div id="contentnav">
+                <!--
+                <nav id="navmenu">
+                    <ul>
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Info</a>
+                        </li>
+                        <li>
+                            <a href="#">Offer</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                -->
+
+<!--                <img class="logo" src="https://github.com/malunaridev/Landing-Pages-Are-Fun/blob/master/1-business-agency-concept/assets/logo.png?raw=true" alt="geometric logotype">-->
+            </div>
+            <div id="content-text">
+                <h1>Congés de <br>Maternité</h1>
+                <h2>Bienvenu sur la plateforme <br>
+                    Dedier aux conges de maternité <br>
+                    <br>
+                    Entrer votre CNI ou Numero d'affiliation<br>
+                    Pour faire une demande
+                </h2>
+                <form class="d-flex" [formGroup]="getUserForm" (ngSubmit)="handleSubmit()" >
+                    <input formControlName="nin"  type="text" class="form-control NIN-V2" id="NIN" aria-describedby="NINHelp">
+<!--                    <button>Demander</button>-->
+                    <button type="submit" class=" ">Demander</button>
+                </form>
+
+            </div>
+            <div id="footer">
+                <div id="contacts">
+                    <div id="phone">
+                        <br>
+                        Pour plus d'info appeler au <br><br>
+                        <span>+221 33 889 19 89</span>
+                    </div>
+
+                    <div id="adress">
+                        Siège Sociale <br>
+                        Place de l'OIT -<span> BP 102</span><br>
+                        Dakar
+                    </div>
+                </div>
+                <div class="icons">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+<footer class="cd__credit">Author: Malunari - Distributed By: <a title="Free web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer>

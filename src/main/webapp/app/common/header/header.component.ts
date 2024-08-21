@@ -7,7 +7,9 @@ import { RouterLink } from '@angular/router';
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage, RouterLink],
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
+
 })
 export class HeaderComponent {
 }

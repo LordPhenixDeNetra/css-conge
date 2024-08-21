@@ -8,14 +8,23 @@ import {SalarierDTO} from "../salarier/salarier.model";
 import {SalarierService} from "../salarier/salarier.service";
 import {DemandeCongeService} from "../demande-conge/demande-conge.service";
 import {DemandeCongeDTO} from "../demande-conge/demande-conge.model";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgOptimizedImage, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    NgOptimizedImage,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  // styleUrl: './home.component.scss'
+  styleUrl: './home.template.scss'
 })
 export class HomeComponent implements OnInit{
 
@@ -30,7 +39,9 @@ export class HomeComponent implements OnInit{
 
   constructor(private salarierService: SalarierService,
               private router : Router,
-              private formBuilder : FormBuilder) {
+              private formBuilder : FormBuilder,
+              private toast : ToastrService
+              ) {
   }
 
   ngOnInit() {
@@ -79,6 +90,11 @@ export class HomeComponent implements OnInit{
         },
         (error) => {
           console.error("Erreur lors de la recherche de l'utilisateur:", error);
+          this.toast.error("Erreur lors de la recherche de l'utilisateur\n" +
+            "veuillez vous rendre a la pour vous declarer", "Erreur de verification",{
+            timeOut: 3000,
+            progressBar:true,
+          });
         }
       );
     }

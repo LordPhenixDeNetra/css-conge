@@ -67,10 +67,7 @@ public class DemandeCongeService {
         demandeCongeDTO.setSalarier(salarierId);
 
         DemandeConge demandeConge = demandeCongeRepository.save(mapToEntity(demandeCongeDTO, new DemandeConge()));
-
-
         emailService.sendMessage(demandeConge.getSalarier().getPrenom(), demandeConge.getSalarier().getEmail(), DemandeStatus.EN_COURS_DE_TRAITEMENT.toString().replaceAll("_", " "));
-
         return mapToDTO(demandeConge, new DemandeCongeDTO());
 
     }

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, ExtraOptions, TitleStrategy } from '@angular/router';
 import { routes } from 'app/app.routes';
 import { CustomTitleStrategy } from 'app/common/title-strategy.injectable';
+import {provideToastr, ToastrModule} from 'ngx-toastr';
 
 
 const routeConfig: ExtraOptions = {
@@ -18,6 +19,9 @@ export const appConfig: ApplicationConfig = {
     {
       provide: TitleStrategy,
       useClass: CustomTitleStrategy
-    }
+    },
+    provideToastr({
+
+    }),
   ]
 };
