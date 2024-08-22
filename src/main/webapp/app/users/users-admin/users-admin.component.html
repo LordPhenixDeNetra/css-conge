@@ -1,0 +1,61 @@
+<mat-tab-group>
+    <mat-tab label="Immatriculation.">
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem deleniti distinctio eos illo ipsum
+            nesciunt, nostrum quia quo recusandae repellat sequi temporibus vitae voluptatum? Blanditiis eos illo
+            provident quo ullam.
+        </div>
+        <div>A ad adipisci, alias blanditiis ea eum excepturi fuga fugiat illum in iusto laborum molestias natus,
+            nesciunt numquam odio porro quidem quod quos ratione reiciendis repellat repudiandae sed unde voluptas.
+        </div>
+        <div>Adipisci esse hic molestiae perferendis quidem repellendus soluta voluptatem. Aspernatur corporis dolorum
+            laborum laudantium maiores minima neque veniam? A accusamus culpa earum facere libero quaerat quibusdam
+            reiciendis repellat tenetur ullam?
+        </div>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                           showFirstLastButtons=""
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Second">
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque blanditiis consequatur dolore
+            dolorum eveniet ipsam ipsum, iste iure maxime nemo provident quaerat quia repellendus rerum tempora velit
+            veritatis voluptatibus.
+        </div>
+        <div>Amet blanditiis dignissimos dolorem est harum illo impedit iusto maiores maxime, molestias nulla
+            perspiciatis, porro possimus quae quas quasi tempore. Doloribus ducimus, eum laudantium libero minima quae
+            quo saepe sint.
+        </div>
+    </mat-tab>
+</mat-tab-group>

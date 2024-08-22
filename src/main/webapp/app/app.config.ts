@@ -21,8 +21,7 @@ export const appConfig: ApplicationConfig = {
       provide: TitleStrategy,
       useClass: CustomTitleStrategy
     },
-    provideToastr({
-
-    }), provideAnimationsAsync(),
+    provideToastr({}),
+    provideAnimationsAsync(),
   ]
 };

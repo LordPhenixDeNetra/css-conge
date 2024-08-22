@@ -15,6 +15,7 @@ import { DemandeCongeEditComponent } from './demande-conge/demande-conge-edit.co
 import { ErrorComponent } from './error/error.component';
 import {SalarierInfoComponent} from "./salarier/salarier-info/salarier-info.component";
 import {DmtAddComponent} from "./dmt-add/dmt-add.component";
+import {UsersAdminComponent} from "./users/users-admin/users-admin.component";
 
 
 export const routes: Routes = [
@@ -99,6 +100,12 @@ export const routes: Routes = [
     path: 'dmt',
     component: DmtAddComponent,
     title: $localize`:@@dmt.add.headline:Add DMT`
+  },
+
+  {
+    path: 'users-admin',
+    component: UsersAdminComponent,
+    title: $localize`:@@dmt.add.headline:Admin`
   },
 
   {
