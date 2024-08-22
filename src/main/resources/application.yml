@@ -56,3 +56,4 @@ springdoc:
 file:
   upload:
     dir: src/main/resources/static/dossier/
+    dmt: src/main/resources/static/dmt/

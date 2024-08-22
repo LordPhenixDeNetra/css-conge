@@ -1,0 +1,24 @@
+
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@salarier.add.headline">Add Salarier</h1>
+    <div>
+        <a routerLink="/salariers" class="btn btn-secondary" i18n="@@salarier.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()" class="mx-5 my-5">
+    <app-input-row [group]="addForm" field="numArticleL143" i18n-label="@@dmt.numArticleL143.label" label="Num Article L143" />
+    <app-input-row [group]="addForm" field="nin" i18n-label="@@dmt.nin.label" label="Nin" />
+    <app-input-row [group]="addForm" field="prenom" i18n-label="@@dmt.prenom.label" label="Prenom" />
+    <app-input-row [group]="addForm" field="nom" i18n-label="@@dmt.nom.label" label="Nom" />
+    <app-input-row [group]="addForm" field="dateNaissane" datepicker="datepicker" i18n-label="@@dmt.dateNaissane.label" label="Date Naissane" />
+    <app-input-row [group]="addForm" field="lieuNaissance" i18n-label="@@dmt.lieuNaissance.label" label="Lieu Naissance" />
+    <app-input-row [group]="addForm" field="adresse" i18n-label="@@dmt.adresse.label" label="Adresse" />
+    <app-input-row [group]="addForm" field="email" i18n-label="@@dmt.email.label" label="Email" />
+    <app-input-row [group]="addForm" field="telephone1" i18n-label="@@dmt.telephone1.label" label="Telephone1" />
+
+    <app-input-row [group]="addForm" rowType="file" field="document" (change)="onFileSelected($event)" i18n-label="@@dmt.document.label" label="Document" />
+
+
+<!--    <app-input-row [group]="addForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site"></app-input-row>-->
+    <input type="submit" i18n-value="@@salarier.add.headline" value="Add Salarier" class="btn btn-primary mt-4" />
+</form>

@@ -75,14 +75,21 @@
             </div>
             <div id="content-text">
                 <h1>Congés de <br>Maternité</h1>
-                <h2>Bienvenu sur la plateforme <br>
-                    Dedier aux conges de maternité <br>
-                    <br>
-                    Entrer votre CNI ou Numero d'affiliation<br>
-                    Pour faire une demande
+                <h2>
+                    <!--
+                    Bienvenu sur la plateforme <br>
+                    Dedier aux conges de maternité <br> <br>
+                    -->
+
+                    Entrez les informations<br>
+                    Pour faire une demande<br><br>
                 </h2>
-                <form class="d-flex" [formGroup]="getUserForm" (ngSubmit)="handleSubmit()" >
+                <form class="d-flex flex-column gap-3" [formGroup]="getUserForm" (ngSubmit)="handleSubmit()" >
+                    <label class="label-NIN-V2">CIN OU NUMERO D'AFFILIATION</label>
                     <input formControlName="nin"  type="text" class="form-control NIN-V2" id="NIN" aria-describedby="NINHelp">
+
+                    <label class="label-EMP-V2">NUMERO D'EMPLOYEUR</label>
+                    <input type="text" class="form-control EMP-V2" id="" aria-describedby="NINHelp">
 <!--                    <button>Demander</button>-->
                     <button type="submit" class=" ">Demander</button>
                 </form>

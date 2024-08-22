@@ -30,15 +30,6 @@
                     <a routerLink="/dossiers" class="btn btn-secondary" i18n="@@dossier.add.back">Back to list</a>
                 </div>
             </div>
-<!--            <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">-->
-<!--                <app-input-row [group]="addForm" rowType="file" field="attestationTravail" i18n-label="@@dossier.attestationTravail.label" label="Attestation Travail" />-->
-<!--                <app-input-row [group]="addForm" rowType="file" field="attestationCessationPaie" i18n-label="@@dossier.attestationCessationPaie.label" label="Attestation Cessation Paie" />-->
-<!--                <app-input-row [group]="addForm" rowType="file" field="certificatMedical" i18n-label="@@dossier.certificatMedical.label" label="Certificat Medical" />-->
-<!--                <app-input-row [group]="addForm" rowType="file" field="dernierBulletinSalaire" i18n-label="@@dossier.dernierBulletinSalaire.label" label="Dernier Bulletin Salaire" />-->
-<!--                <app-input-row [group]="addForm" rowType="file" field="copieCNI" i18n-label="@@dossier.copieCNI.label" label="CopieCNI" />-->
-<!--                <input type="submit" i18n-value="@@dossier.add.headline" value="Creer le dossier" class="btn btn-primary mt-4" />-->
-<!--            </form>-->
-
             <form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
                 <app-input-row [group]="addForm" rowType="file" field="attestationTravail" (change)="handleFileInput($event, 'attestationTravail')" i18n-label="@@dossier.attestationTravail.label" label="Attestation Travail" />
                 <app-input-row [group]="addForm" rowType="file" field="attestationCessationPaie" (change)="handleFileInput($event, 'attestationCessationPaie')" i18n-label="@@dossier.attestationCessationPaie.label" label="Attestation Cessation Paie" />

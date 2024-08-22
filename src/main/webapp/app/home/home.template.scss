@@ -201,15 +201,6 @@ main {
 
 }
 
-.NIN-V2{
-    //background-color: #7fdbbb;
-    //padding: 0.5rem 2rem;
-    border: 2px solid #7fdbbb;
-    border-radius: 4rem;
-    margin-left: 4px;
-    margin-right: 4px;
-}
-
 #content {
     display: flex;
     flex-direction: column;
@@ -281,7 +272,9 @@ h2 {
 }
 
 button {
-    background-color: #7fdbbb;
+    //background-color: #7fdbbb;
+    background-color: #ff8a17;
+
     padding: 0.5rem 2rem;
     border: 0.1rem solid #7fdbbb;
     border-radius: 4rem;
@@ -293,7 +286,7 @@ button {
 }
 
 button:hover {
-    background-color: #50b893;
+    background-color: #303c4e;
     cursor: pointer;
     color: white;
     transition: 0.5s;
@@ -326,7 +319,8 @@ button:hover {
 #phone span {
     font-size: 1.9rem;
     font-weight: 600;
-    color: #7fdbbb;
+    //color: #7fdbbb;
+    color : #ff8a17;
     letter-spacing: 0.2rem;
 }
 
@@ -410,4 +404,23 @@ button:hover {
     padding-top: 0px;
 
 }
+
+.NIN-V2, .EMP-V2{
+    //background-color: #7fdbbb;
+    //padding: 0.5rem 2rem;
+    //border: 2px solid #7fdbbb;
+    border: 2px solid #ff8a17;
+    border-radius: 4rem;
+    margin-left: 4px;
+    margin-right: 4px;
+
+    padding-left: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+}
+
+.label-NIN-V2, .label-EMP-V2{
+    font-size: 16px;
+}
+
 

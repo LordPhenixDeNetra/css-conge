@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
+
     let firstReload = localStorage.getItem('firstReload');
 
     if (firstReload){
@@ -83,18 +84,16 @@ export class HomeComponent implements OnInit{
 
             }
           )
-          // this.router.navigate([`/salarierInfo/info/${salarierId}`], { state: { demandeId: salarierId}});
-          // this.router.navigate([`/salarierInfo/info/${salarierId}`], { state: { demandeId: this.demandeJsonDataId}});
-          // this.router.navigate([`/salarierInfo/info/${salarierId}`], { state: { demandeId: 10001}});
 
         },
         (error) => {
           console.error("Erreur lors de la recherche de l'utilisateur:", error);
           this.toast.error("Erreur lors de la recherche de l'utilisateur\n" +
             "veuillez vous rendre a la pour vous declarer", "Erreur de verification",{
-            timeOut: 3000,
+            timeOut: 10000,
             progressBar:true,
           });
+          this.router.navigate([`/dmt`]);
         }
       );
     }

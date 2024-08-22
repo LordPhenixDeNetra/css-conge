@@ -62,19 +62,6 @@ export class DossierAddComponent implements OnInit{
 
     const fileArray = Object.values(this.files);
 
-
-    // this.dossierService.createDossier(data, fileArray).subscribe({
-    //     next: (value) => this.router.navigate(['/dossiers'], {
-    //
-    //       state: {
-    //         msgSuccess: this.getMessage('created')
-    //       }
-    //     }),
-    //     error: (error) => this.errorHandler.handleServerError(error.error, this.addForm, this.getMessage)
-    //   }
-    // );
-
-
     this.dossierService.createDossier(data, fileArray).subscribe(
 
       response => {
