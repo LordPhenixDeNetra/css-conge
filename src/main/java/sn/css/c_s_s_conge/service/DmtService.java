@@ -37,13 +37,13 @@ public class DmtService {
     public List<DmtDTO> findAll() {
         final List<Dmt> dmts = dmtRepository.findAll(Sort.by("id"));
         return dmts.stream()
-            .map(Dmt -> mapToDTO(Dmt, new DmtDTO()))
+            .map(dmt -> mapToDTO(dmt, new DmtDTO()))
             .toList();
     }
 
     public DmtDTO get(final Long id) {
         return dmtRepository.findById(id)
-            .map(Dmt -> mapToDTO(Dmt, new DmtDTO()))
+            .map(dmt -> mapToDTO(dmt, new DmtDTO()))
             .orElseThrow(NotFoundException::new);
     }
 

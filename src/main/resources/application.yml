@@ -53,6 +53,9 @@ springdoc:
   pathsToMatch: /api/**
 
 
+# spring.devtools.remote.restart.enabled=false  
+
+
 file:
   upload:
     dir: src/main/resources/static/dossier/

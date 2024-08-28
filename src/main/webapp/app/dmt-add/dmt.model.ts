@@ -16,4 +16,20 @@ export class DmtDTO {
   telephone1?: string|null;
   document?: string|null;
 
+  static getAttributeNames(): string[] {
+    return [
+      // 'id',
+      'numArticleL143',
+      'nin',
+      'prenom',
+      'nom',
+      'dateNaissane',
+      'lieuNaissance',
+      'adresse',
+      'email',
+      'telephone1',
+      // 'document'
+    ]
+  }
+
 }

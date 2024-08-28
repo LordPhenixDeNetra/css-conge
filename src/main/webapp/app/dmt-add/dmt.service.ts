@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { map } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import { transformRecordToMap } from 'app/common/utils';
 import {DmtDTO} from "./dmt.model";
 
@@ -54,6 +54,14 @@ export class DmtService {
     // Envoyer le formData comme le corps de la requête
     return this.http.post(this.resourcePath + '/file', formData, { headers });
   }
+
+  getFile(id: number):Observable<Blob>{
+    return this.http.get(`${this.resourcePath}/${id}/file`, { responseType: 'blob' });
+  }
+
+  // getFile(id: number){
+  //   return this.http.get(`${this.resourcePath}/${id}/file`);
+  // }
 
 
   updateDmt(id: number, dmtDTO: DmtDTO) {

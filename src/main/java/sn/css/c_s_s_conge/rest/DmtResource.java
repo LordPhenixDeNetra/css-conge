@@ -3,6 +3,9 @@ package sn.css.c_s_s_conge.rest;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +17,10 @@ import sn.css.c_s_s_conge.service.DmtService;
 import sn.css.c_s_s_conge.util.ReferencedException;
 import sn.css.c_s_s_conge.util.ReferencedWarning;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,9 +31,13 @@ public class DmtResource {
 
     private final DmtService dmtService;
 
+    @Value("${file.upload.dmt}")
+    private String fileUploadDmt;
+
     public DmtResource(final DmtService dmtService) {
         this.dmtService = dmtService;
     }
+
 
     @GetMapping
     public ResponseEntity<List<DmtDTO>> getAllDmts() {
@@ -106,5 +117,33 @@ public class DmtResource {
 //            .stream()
 //            .collect(CustomCollectors.toSortedMap(Site::getId, Site::getId)));
 //    }
+
+    @GetMapping("/{id}/file")
+    public ResponseEntity<Resource> getFile(@PathVariable(name = "id") final Long id) {
+        // Obtenez le DmtDTO avec le document
+        DmtDTO dmtDTO = dmtService.get(id);
+        String fileName = dmtDTO.getDocument();
+
+        if (fileName == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Créez le chemin du fichier
+        Path filePath = Path.of(fileUploadDmt + fileName);
+        try {
+            Resource file = new UrlResource(filePath.toUri());
+            if (file.exists() || file.isReadable()) {
+                return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(Files.probeContentType(filePath)))
+                    .body(file);
+            } else {
+                throw new RuntimeException("File not found: " + fileName);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error reading file: " + fileName, e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error determining file type: " + fileName, e);
+        }
+    }
 
 }
