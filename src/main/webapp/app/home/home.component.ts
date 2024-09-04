@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
-
     let firstReload = localStorage.getItem('firstReload');
 
     if (firstReload){
@@ -72,8 +71,7 @@ export class HomeComponent implements OnInit{
           localStorage.setItem('salarier', JSON.stringify(response));
           this.demandeCongeService.findBySalarierId(Number(salarierId)).subscribe(
             demande =>{
-              // this.salarierDemande = new DemandeCongeDTO(response);
-              // localStorage.setItem('reloadable', 'yes');
+
               localStorage.setItem('demandeConge', JSON.stringify(demande));
               this.demandeJsonData = demande;
 

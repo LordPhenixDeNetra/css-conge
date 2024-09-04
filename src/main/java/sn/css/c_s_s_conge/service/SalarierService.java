@@ -21,6 +21,12 @@ public class SalarierService {
     private final SiteRepository siteRepository;
     private final DemandeCongeRepository demandeCongeRepository;
 
+    /**
+     * Constructeur pour injecter les dépendances nécessaires.
+     * @param salarierRepository Repository pour les entités `Salarier`.
+     * @param siteRepository Repository pour les entités `Site`.
+     * @param demandeCongeRepository Repository pour les entités `DemandeConge`.
+     */
     public SalarierService(final SalarierRepository salarierRepository,
             final SiteRepository siteRepository,
             final DemandeCongeRepository demandeCongeRepository) {
@@ -29,6 +35,10 @@ public class SalarierService {
         this.demandeCongeRepository = demandeCongeRepository;
     }
 
+    /**
+     * Récupère tous les salariés triés par identifiant.
+     * @return Liste de DTOs des salariés.
+     */
     public List<SalarierDTO> findAll() {
         final List<Salarier> salariers = salarierRepository.findAll(Sort.by("id"));
         return salariers.stream()
@@ -36,6 +46,11 @@ public class SalarierService {
                 .toList();
     }
 
+    /**
+     * Récupère un salarié par son NIN (Numéro d'Identification National).
+     * @param nin Numéro d'identification national.
+     * @return DTO du salarié.
+     */
     public SalarierDTO findSalarierByNin(final String nin) {
 
         Salarier salarier = salarierRepository.findSalarierByNin(nin);
@@ -43,18 +58,35 @@ public class SalarierService {
         return mapToDTO(salarier, new SalarierDTO());
     }
 
+    /**
+     * Récupère un salarié par son identifiant.
+     * @param id Identifiant du salarié.
+     * @return DTO du salarié.
+     * @throws NotFoundException si le salarié n'est pas trouvé.
+     */
     public SalarierDTO get(final Long id) {
         return salarierRepository.findById(id)
                 .map(salarier -> mapToDTO(salarier, new SalarierDTO()))
                 .orElseThrow(NotFoundException::new);
     }
 
+    /**
+     * Crée un nouveau salarié.
+     * @param salarierDTO DTO du salarié à créer.
+     * @return Identifiant du salarié créé.
+     */
     public Long create(final SalarierDTO salarierDTO) {
         final Salarier salarier = new Salarier();
         mapToEntity(salarierDTO, salarier);
         return salarierRepository.save(salarier).getId();
     }
 
+    /**
+     * Met à jour un salarié existant.
+     * @param id Identifiant du salarié.
+     * @param salarierDTO DTO du salarié à mettre à jour.
+     * @throws NotFoundException si le salarié n'est pas trouvé.
+     */
     public void update(final Long id, final SalarierDTO salarierDTO) {
         final Salarier salarier = salarierRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
@@ -62,10 +94,20 @@ public class SalarierService {
         salarierRepository.save(salarier);
     }
 
+    /**
+     * Supprime un salarié par son identifiant.
+     * @param id Identifiant du salarié à supprimer.
+     */
     public void delete(final Long id) {
         salarierRepository.deleteById(id);
     }
 
+    /**
+     * Mappe une entité `Salarier` vers un DTO `SalarierDTO`.
+     * @param salarier L'entité `Salarier`.
+     * @param salarierDTO Le DTO cible.
+     * @return Le DTO mappé.
+     */
     private SalarierDTO mapToDTO(final Salarier salarier, final SalarierDTO salarierDTO) {
         salarierDTO.setId(salarier.getId());
         salarierDTO.setNumArticleL143(salarier.getNumArticleL143());
@@ -88,6 +130,13 @@ public class SalarierService {
         return salarierDTO;
     }
 
+    /**
+     * Mappe un DTO `SalarierDTO` vers une entité `Salarier`.
+     * @param salarierDTO Le DTO source.
+     * @param salarier L'entité cible.
+     * @return L'entité mappée.
+     * @throws NotFoundException si le site associé n'est pas trouvé.
+     */
     private Salarier mapToEntity(final SalarierDTO salarierDTO, final Salarier salarier) {
         salarier.setNumArticleL143(salarierDTO.getNumArticleL143());
         salarier.setNin(salarierDTO.getNin());
@@ -111,10 +160,22 @@ public class SalarierService {
         return salarier;
     }
 
+    /**
+     * Vérifie si un salarié existe en fonction de son NIN.
+     * @param nin Numéro d'identification national.
+     * @return true si un salarié avec le NIN donné existe, false sinon.
+     */
     public boolean ninExists(final String nin) {
         return salarierRepository.existsByNinIgnoreCase(nin);
     }
 
+    /**
+     * Génère un avertissement si un salarié est référencé dans d'autres entités,
+     * comme une demande de congé.
+     * @param id Identifiant du salarié.
+     * @return `ReferencedWarning` contenant les informations de référence, ou null si aucune référence n'est trouvée.
+     * @throws NotFoundException si le salarié n'est pas trouvé.
+     */
     public ReferencedWarning getReferencedWarning(final Long id) {
         final ReferencedWarning referencedWarning = new ReferencedWarning();
         final Salarier salarier = salarierRepository.findById(id)

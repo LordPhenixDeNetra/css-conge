@@ -24,6 +24,11 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
+
+/**
+ * Contrôleur REST pour gérer les requêtes liées aux DMT (Demande de Mutation Temporaire).
+ * Ce contrôleur fournit des endpoints pour créer, lire, mettre à jour et supprimer des DMT.
+ */
 @RestController
 @RequestMapping(value = "/api/dmts", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
@@ -38,17 +43,33 @@ public class DmtResource {
         this.dmtService = dmtService;
     }
 
-
+    /**
+     * Récupère toutes les DMTs disponibles.
+     *
+     * @return Une liste de DmtDTO représentant toutes les DMTs.
+     */
     @GetMapping
     public ResponseEntity<List<DmtDTO>> getAllDmts() {
         return ResponseEntity.ok(dmtService.findAll());
     }
 
+    /**
+     * Récupère une DMT par son identifiant.
+     *
+     * @param id L'identifiant de la DMT.
+     * @return Un DmtDTO représentant la DMT demandée.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<DmtDTO> getDmt(@PathVariable(name = "id") final Long id) {
         return ResponseEntity.ok(dmtService.get(id));
     }
 
+    /**
+     * Crée une nouvelle DMT.
+     *
+     * @param dmtDTO Les données de la nouvelle DMT.
+     * @return L'identifiant de la DMT nouvellement créée.
+     */
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createDmt(@RequestBody @Valid final DmtDTO dmtDTO) {
@@ -63,6 +84,12 @@ public class DmtResource {
 //        return new ResponseEntity<>(createdId, HttpStatus.CREATED);
 //    }
 
+    /**
+     * Crée une nouvelle DMT avec un fichier associé.
+     *
+     * @param file   Le fichier à associer à la DMT.
+     * @return L'identifiant de la DMT nouvellement créée.
+     */
     @PostMapping("/file")
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createDmtWithFile(
@@ -93,6 +120,12 @@ public class DmtResource {
     }
 
 
+    /**
+     * Met à jour une DMT existante.
+     *
+     * @param id     L'identifiant de la DMT à mettre à jour.
+     * @param dmtDTO Les nouvelles données de la DMT.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Long> updateDmt(@PathVariable(name = "id") final Long id,
                                                @RequestBody @Valid final DmtDTO dmtDTO) {
@@ -100,6 +133,11 @@ public class DmtResource {
         return ResponseEntity.ok(id);
     }
 
+    /**
+     * Supprime une DMT existante.
+     *
+     * @param id L'identifiant de la DMT à supprimer.
+     */
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
     public ResponseEntity<Void> deleteDmt(@PathVariable(name = "id") final Long id) {

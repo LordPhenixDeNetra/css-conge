@@ -4,6 +4,7 @@ import { environment } from 'environments/environment';
 import { SalarierDTO } from 'app/salarier/salarier.model';
 import { map } from 'rxjs';
 import { transformRecordToMap } from 'app/common/utils';
+import {NMessageDTO} from "../nmessage/nmessage.model";
 
 
 @Injectable({

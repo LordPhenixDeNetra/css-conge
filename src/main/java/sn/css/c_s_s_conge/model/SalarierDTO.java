@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+/**
+ * Représente un salarié sous forme de DTO (Data Transfer Object) pour le transfert
+ * de données entre les couches de l'application.
+ */
 @Getter
 @Setter
 public class SalarierDTO {

@@ -25,6 +25,14 @@ public class DemandeCongeService {
     private final DossierRepository dossierRepository;
     private final EmailService emailService;
 
+    /**
+     * Constructeur pour injecter les dépendances.
+     *
+     * @param demandeCongeRepository Repository pour les demandes de congé.
+     * @param salarierRepository Repository pour les salariés.
+     * @param dossierRepository Repository pour les dossiers.
+     * @param emailService Service pour l'envoi d'emails.
+     */
     public DemandeCongeService(final DemandeCongeRepository demandeCongeRepository,
                                final SalarierRepository salarierRepository,
                                final DossierRepository dossierRepository, EmailService emailService) {
@@ -34,6 +42,11 @@ public class DemandeCongeService {
         this.emailService = emailService;
     }
 
+    /**
+     * Retourne une liste de toutes les demandes de congé triées par identifiant.
+     *
+     * @return Liste de DemandeCongeDTO représentant toutes les demandes de congé.
+     */
     public List<DemandeCongeDTO> findAll() {
         final List<DemandeConge> demandeConges = demandeCongeRepository.findAll(Sort.by("id"));
         return demandeConges.stream()
@@ -48,18 +61,40 @@ public class DemandeCongeService {
 //            .toList();
 //    }
 
+
+    /**
+     * Retourne une demande de congé spécifique par son identifiant.
+     *
+     * @param id L'identifiant de la demande de congé.
+     * @return DemandeCongeDTO représentant la demande de congé trouvée.
+     * @throws NotFoundException Si la demande de congé n'est pas trouvée.
+     */
     public DemandeCongeDTO get(final Long id) {
         return demandeCongeRepository.findById(id)
                 .map(demandeConge -> mapToDTO(demandeConge, new DemandeCongeDTO()))
                 .orElseThrow(NotFoundException::new);
     }
 
+    /**
+     * Crée une nouvelle demande de congé.
+     *
+     * @param demandeCongeDTO Les informations de la demande de congé à créer.
+     * @return L'identifiant de la demande de congé créée.
+     */
     public Long create(final DemandeCongeDTO demandeCongeDTO) {
         final DemandeConge demandeConge = new DemandeConge();
         mapToEntity(demandeCongeDTO, demandeConge);
         return demandeCongeRepository.save(demandeConge).getId();
     }
 
+    /**
+     * Crée une demande de congé avec un salarié et un dossier spécifiques.
+     *
+     * @param demandeCongeDTO Les informations de la demande de congé à créer.
+     * @param salarierId L'identifiant du salarié.
+     * @param dossierId L'identifiant du dossier.
+     * @return DemandeCongeDTO représentant la demande de congé créée.
+     */
     public DemandeCongeDTO createWithSalarierAndDossier(final DemandeCongeDTO demandeCongeDTO, Long salarierId, Long dossierId) {
 
         demandeCongeDTO.setStatus(DemandeStatus.EN_COURS_DE_TRAITEMENT);
@@ -72,6 +107,12 @@ public class DemandeCongeService {
 
     }
 
+    /**
+     * Trouve la première demande de congé pour un salarié donné.
+     *
+     * @param salarierId L'identifiant du salarié.
+     * @return DemandeCongeDTO représentant la demande de congé trouvée, ou une nouvelle instance vide si aucune demande n'est trouvée.
+     */
     public DemandeCongeDTO findBySalarierId(Long salarierId){
         Salarier salarier = salarierRepository.findById(salarierId).get();
         DemandeConge demandeConge = demandeCongeRepository.findFirstBySalarier(salarier);
@@ -82,7 +123,13 @@ public class DemandeCongeService {
         return new DemandeCongeDTO();
     }
 
-
+    /**
+     * Met à jour une demande de congé existante.
+     *
+     * @param id L'identifiant de la demande de congé à mettre à jour.
+     * @param demandeCongeDTO Les nouvelles informations de la demande de congé.
+     * @throws NotFoundException Si la demande de congé n'est pas trouvée.
+     */
     public void update(final Long id, final DemandeCongeDTO demandeCongeDTO) {
         final DemandeConge demandeConge = demandeCongeRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
@@ -90,10 +137,22 @@ public class DemandeCongeService {
         demandeCongeRepository.save(demandeConge);
     }
 
+    /**
+     * Supprime une demande de congé par son identifiant.
+     *
+     * @param id L'identifiant de la demande de congé à supprimer.
+     */
     public void delete(final Long id) {
         demandeCongeRepository.deleteById(id);
     }
 
+    /**
+     * Convertit une entité DemandeConge en DTO.
+     *
+     * @param demandeConge L'entité à convertir.
+     * @param demandeCongeDTO Le DTO dans lequel convertir l'entité.
+     * @return Le DTO contenant les informations de l'entité.
+     */
     private DemandeCongeDTO mapToDTO(final DemandeConge demandeConge,
             final DemandeCongeDTO demandeCongeDTO) {
         demandeCongeDTO.setId(demandeConge.getId());
@@ -103,6 +162,13 @@ public class DemandeCongeService {
         return demandeCongeDTO;
     }
 
+    /**
+     * Convertit une entité DemandeConge à un DTO de réponse.
+     *
+     * @param demandeConge L'entité DemandeConge.
+     * @param demandeCongeResponseDTO Le DTO de réponse à remplir.
+     * @return Le DTO de réponse rempli avec les informations de l'entité.
+     */
     private DemandeCongeResponseDTO mapToCongeResponseDTO(final DemandeConge demandeConge,
                                      final DemandeCongeResponseDTO demandeCongeResponseDTO) {
 
@@ -119,6 +185,13 @@ public class DemandeCongeService {
         return demandeCongeResponseDTO;
     }
 
+    /**
+     * Mappe un DTO à une entité DemandeConge.
+     *
+     * @param demandeCongeDTO Le DTO contenant les informations de la demande de congé.
+     * @param demandeConge L'entité DemandeConge à remplir.
+     * @return L'entité DemandeConge remplie avec les informations du DTO.
+     */
     private DemandeConge mapToEntity(final DemandeCongeDTO demandeCongeDTO,
             final DemandeConge demandeConge) {
 

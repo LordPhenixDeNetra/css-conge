@@ -22,5 +22,4 @@ export class DisplayActionButtonsPipe implements PipeTransform {
       `
     }));
   }
-
 }

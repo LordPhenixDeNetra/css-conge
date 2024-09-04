@@ -5,6 +5,4 @@ import sn.css.c_s_s_conge.domain.Dmt;
 
 public interface DmtRepository extends JpaRepository<Dmt, Long> {
 
-
-
 }

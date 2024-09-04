@@ -19,7 +19,10 @@ import sn.css.c_s_s_conge.repos.SalarierRepository;
 import sn.css.c_s_s_conge.service.DemandeCongeService;
 import sn.css.c_s_s_conge.util.CustomCollectors;
 
-
+/**
+ * Service pour la gestion des demandes de congé.
+ * Fournit des méthodes pour créer, mettre à jour, supprimer et rechercher des demandes de congé.
+ */
 @RestController
 @RequestMapping(value = "/api/demandeConges", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
@@ -28,6 +31,7 @@ public class DemandeCongeResource {
     private final DemandeCongeService demandeCongeService;
     private final SalarierRepository salarierRepository;
     private final DossierRepository dossierRepository;
+
 
     public DemandeCongeResource(final DemandeCongeService demandeCongeService,
             final SalarierRepository salarierRepository,

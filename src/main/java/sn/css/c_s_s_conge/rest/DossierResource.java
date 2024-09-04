@@ -29,7 +29,12 @@ import sn.css.c_s_s_conge.service.DossierService;
 import sn.css.c_s_s_conge.util.ReferencedException;
 import sn.css.c_s_s_conge.util.ReferencedWarning;
 
-
+/**
+ * Resource REST pour gérer les dossiers.
+ * <p>
+ * Fournit des endpoints pour effectuer des opérations CRUD sur les dossiers, ainsi que pour gérer les fichiers associés.
+ * </p>
+ */
 @RestController
 @RequestMapping(value = "/api/dossiers", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
@@ -40,20 +45,42 @@ public class DossierResource {
     @Value("${file.upload.dir}")
     private String fileUploadDir;
 
+    /**
+     * Constructeur pour le contrôleur {@link DossierResource}.
+     *
+     * @param dossierService Service pour gérer les dossiers.
+     */
     public DossierResource(final DossierService dossierService) {
         this.dossierService = dossierService;
     }
 
+    /**
+     * Récupère tous les dossiers.
+     *
+     * @return Liste des DTO représentant tous les dossiers.
+     */
     @GetMapping
     public ResponseEntity<List<DossierDTO>> getAllDossiers() {
         return ResponseEntity.ok(dossierService.findAll());
     }
 
+    /**
+     * Récupère un dossier par son identifiant.
+     *
+     * @param id Identifiant du dossier.
+     * @return DTO représentant le dossier.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<DossierDTO> getDossier(@PathVariable(name = "id") final Long id) {
         return ResponseEntity.ok(dossierService.get(id));
     }
 
+    /**
+     * Crée un nouveau dossier.
+     *
+     * @param dossierDTO DTO représentant le dossier à créer.
+     * @return Identifiant du dossier créé.
+     */
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createDossier(@RequestBody @Valid final DossierDTO dossierDTO) {
@@ -61,6 +88,12 @@ public class DossierResource {
         return new ResponseEntity<>(createdId, HttpStatus.CREATED);
     }
 
+    /**
+     * Crée un dossier avec des fichiers associés.
+     *
+     * @param files Liste de fichiers à ajouter au dossier.
+     * @return DTO représentant le dossier avec les fichiers ajoutés.
+     */
     @PostMapping("/upload/files")
     @ApiResponse(responseCode = "201")
     public ResponseEntity<DossierDTO> createDossierWithFile(@RequestParam("files") List<MultipartFile> files) {
@@ -68,6 +101,13 @@ public class DossierResource {
         return ResponseEntity.ok(dossierDTO);
     }
 
+    /**
+     * Met à jour un dossier existant.
+     *
+     * @param id Identifiant du dossier à mettre à jour.
+     * @param dossierDTO DTO représentant les nouvelles données du dossier.
+     * @return Identifiant du dossier mis à jour.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Long> updateDossier(@PathVariable(name = "id") final Long id,
             @RequestBody @Valid final DossierDTO dossierDTO) {
@@ -75,6 +115,13 @@ public class DossierResource {
         return ResponseEntity.ok(id);
     }
 
+    /**
+     * Supprime un dossier par son identifiant.
+     *
+     * @param id Identifiant du dossier à supprimer.
+     * @return Réponse vide avec le statut HTTP 204 si la suppression a réussi.
+     * @throws ReferencedException Si le dossier est référencé ailleurs et ne peut pas être supprimé.
+     */
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
     public ResponseEntity<Void> deleteDossier(@PathVariable(name = "id") final Long id) {
@@ -85,7 +132,6 @@ public class DossierResource {
         dossierService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 //    @GetMapping("/getfile/{fileName:.+}")
 //    public ResponseEntity<Resource> getFile(@PathVariable String fileName) {
@@ -104,6 +150,13 @@ public class DossierResource {
 //        }
 //    }
 
+    /**
+     * Récupère un fichier par son nom.
+     *
+     * @param fileName Nom du fichier.
+     * @return Ressource représentant le fichier.
+     * @throws RuntimeException Si une erreur survient lors de la lecture du fichier.
+     */
     @GetMapping("/getfile/{fileName:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String fileName) {
         try {
@@ -127,7 +180,13 @@ public class DossierResource {
         }
     }
 
-
+    /**
+     * Récupère tous les fichiers associés à un dossier par son identifiant.
+     *
+     * @param fileId Identifiant du dossier.
+     * @return Liste des noms de fichiers associés au dossier.
+     * @throws RuntimeException Si une erreur survient lors de la récupération des fichiers.
+     */
     @GetMapping("/files/{fileId}")
     public ResponseEntity<List<String>> getAllFilesById(@PathVariable Long fileId) {
 
@@ -166,9 +225,12 @@ public class DossierResource {
     }
 
 
-
-
-
+    /**
+     * Génère l'URL pour accéder à un fichier.
+     *
+     * @param fileName Nom du fichier.
+     * @return URL du fichier.
+     */
     private String generateFileUrl(String fileName) {
         String host = "http://localhost"; // ou utiliser votre nom de domaine
         int port = 8080; // remplacer par le port de votre application si nécessaire

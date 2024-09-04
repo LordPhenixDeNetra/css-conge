@@ -12,6 +12,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
+/**
+ * Représente un salarié en tant qu'entité persistante dans la base de données.
+ * Contient les informations principales du salarié ainsi que les métadonnées
+ * de création et de mise à jour.
+ */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Getter

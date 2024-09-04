@@ -24,7 +24,12 @@ import sn.css.c_s_s_conge.service.interfaces.EmailService;
 import sn.css.c_s_s_conge.util.NotFoundException;
 import sn.css.c_s_s_conge.util.ReferencedWarning;
 
-
+/**
+ * Service pour gérer les opérations liées aux dossiers.
+ * <p>
+ * Fournit des méthodes pour créer, lire, mettre à jour et supprimer des dossiers.
+ * </p>
+ */
 @Service
 public class DossierService {
 
@@ -35,12 +40,23 @@ public class DossierService {
     @Value("${file.upload.dir}")
     private String fileUploadDir;
 
+    /**
+     * Constructeur pour le service {@link DossierService}.
+     *
+     * @param dossierRepository Repository pour les opérations sur les dossiers.
+     * @param demandeCongeRepository Repository pour les opérations sur les demandes de congé.
+     */
     public DossierService(final DossierRepository dossierRepository,
             final DemandeCongeRepository demandeCongeRepository) {
         this.dossierRepository = dossierRepository;
         this.demandeCongeRepository = demandeCongeRepository;
     }
 
+    /**
+     * Trouve tous les dossiers.
+     *
+     * @return Liste des DTO représentant tous les dossiers.
+     */
     public List<DossierDTO> findAll() {
         final List<Dossier> dossiers = dossierRepository.findAll(Sort.by("id"));
         return dossiers.stream()
@@ -49,6 +65,12 @@ public class DossierService {
     }
 
     // Méthode pour ajouter plusieurs fichiers
+    /**
+     * Ajoute plusieurs fichiers à un dossier.
+     *
+     * @param files Liste de fichiers à ajouter.
+     * @return DTO représentant le dossier avec les fichiers ajoutés.
+     */
     public DossierDTO ajouterFilesDossier(List<MultipartFile> files) {
 
         List<String> dossierFiles = new ArrayList<>();
@@ -93,6 +115,12 @@ public class DossierService {
 
     }
 
+    /**
+     * Détermine le type de média d'un fichier.
+     *
+     * @param fileName Nom du fichier.
+     * @return Type de média du fichier.
+     */
     public MediaType determineFileMediaType(String fileName) {
         if (fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg")) {
             return MediaType.IMAGE_JPEG;
@@ -107,18 +135,38 @@ public class DossierService {
         return MediaType.IMAGE_JPEG;
     }
 
+    /**
+     * Trouve un dossier par son identifiant.
+     *
+     * @param id Identifiant du dossier.
+     * @return DTO représentant le dossier.
+     * @throws NotFoundException Si le dossier n'est pas trouvé.
+     */
     public DossierDTO get(final Long id) {
         return dossierRepository.findById(id)
                 .map(dossier -> mapToDTO(dossier, new DossierDTO()))
                 .orElseThrow(NotFoundException::new);
     }
 
+    /**
+     * Crée un nouveau dossier.
+     *
+     * @param dossierDTO DTO représentant le dossier à créer.
+     * @return Identifiant du dossier créé.
+     */
     public Long create(final DossierDTO dossierDTO) {
         final Dossier dossier = new Dossier();
         mapToEntity(dossierDTO, dossier);
         return dossierRepository.save(dossier).getId();
     }
 
+    /**
+     * Met à jour un dossier existant.
+     *
+     * @param id Identifiant du dossier à mettre à jour.
+     * @param dossierDTO DTO représentant les nouvelles données du dossier.
+     * @throws NotFoundException Si le dossier n'est pas trouvé.
+     */
     public void update(final Long id, final DossierDTO dossierDTO) {
         final Dossier dossier = dossierRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
@@ -126,10 +174,22 @@ public class DossierService {
         dossierRepository.save(dossier);
     }
 
+    /**
+     * Supprime un dossier par son identifiant.
+     *
+     * @param id Identifiant du dossier à supprimer.
+     */
     public void delete(final Long id) {
         dossierRepository.deleteById(id);
     }
 
+    /**
+     * Convertit un objet {@link Dossier} en {@link DossierDTO}.
+     *
+     * @param dossier Entité à convertir.
+     * @param dossierDTO DTO à remplir.
+     * @return DTO rempli avec les données de l'entité.
+     */
     public static DossierDTO mapToDTO(final Dossier dossier, final DossierDTO dossierDTO) {
         dossierDTO.setId(dossier.getId());
         dossierDTO.setAttestationTravail(dossier.getAttestationTravail());
@@ -140,6 +200,13 @@ public class DossierService {
         return dossierDTO;
     }
 
+    /**
+     * Convertit un {@link DossierDTO} en entité {@link Dossier}.
+     *
+     * @param dossierDTO DTO à convertir.
+     * @param dossier Entité à remplir.
+     * @return Entité remplie avec les données du DTO.
+     */
     public static Dossier mapToEntity(final DossierDTO dossierDTO, final Dossier dossier) {
         dossier.setAttestationTravail(dossierDTO.getAttestationTravail());
         dossier.setAttestationCessationPaie(dossierDTO.getAttestationCessationPaie());
@@ -149,6 +216,13 @@ public class DossierService {
         return dossier;
     }
 
+    /**
+     * Vérifie s'il y a un avertissement de référence pour un dossier donné.
+     *
+     * @param id Identifiant du dossier.
+     * @return Avertissement de référence si un avertissement existe, sinon {@code null}.
+     * @throws NotFoundException Si le dossier n'est pas trouvé.
+     */
     public ReferencedWarning getReferencedWarning(final Long id) {
         final ReferencedWarning referencedWarning = new ReferencedWarning();
         final Dossier dossier = dossierRepository.findById(id)

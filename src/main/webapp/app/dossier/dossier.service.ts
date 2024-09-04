@@ -48,8 +48,6 @@ export class DossierService {
     return this.http.post(this.resourcePath + '/upload/files', formData, { headers });
   }
 
-
-
   updateDossier(id: number, dossierDTO: DossierDTO) {
     return this.http.put<number>(this.resourcePath + '/' + id, dossierDTO);
   }

@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Service pour la gestion des DMT.
+ * Fournit des méthodes pour créer, lire, mettre à jour et supprimer des DMT,
+ * ainsi que pour gérer les fichiers associés.
+ */
 @Service
 public class DmtService {
 
@@ -34,6 +39,11 @@ public class DmtService {
         this.dmtRepository = dmtRepository;
     }
 
+    /**
+     * Récupère toutes les DMTs triées par ID.
+     *
+     * @return Une liste de DmtDTO représentant toutes les DMTs.
+     */
     public List<DmtDTO> findAll() {
         final List<Dmt> dmts = dmtRepository.findAll(Sort.by("id"));
         return dmts.stream()
@@ -41,18 +51,38 @@ public class DmtService {
             .toList();
     }
 
+    /**
+     * Récupère une DMT par son identifiant.
+     *
+     * @param id L'identifiant de la DMT à récupérer.
+     * @return Un DmtDTO représentant la DMT.
+     * @throws NotFoundException Si la DMT avec l'ID spécifié n'existe pas.
+     */
     public DmtDTO get(final Long id) {
         return dmtRepository.findById(id)
             .map(dmt -> mapToDTO(dmt, new DmtDTO()))
             .orElseThrow(NotFoundException::new);
     }
 
+    /**
+     * Crée une nouvelle DMT.
+     *
+     * @param dmtDTO Les données de la DMT à créer.
+     * @return L'identifiant de la DMT nouvellement créée.
+     */
     public Long create(final DmtDTO dmtDTO) {
         final Dmt dmt = new Dmt();
         mapToEntity(dmtDTO, dmt);
         return dmtRepository.save(dmt).getId();
     }
 
+    /**
+     * Crée une nouvelle DMT avec un fichier associé.
+     *
+     * @param dmtDTO Les données de la DMT à créer.
+     * @param file   Le fichier à associer à la DMT.
+     * @return L'identifiant de la DMT nouvellement créée.
+     */
     public Long createWithFile(final DmtDTO dmtDTO, MultipartFile file) {
 
         final Dmt dmt = new Dmt();
@@ -86,6 +116,12 @@ public class DmtService {
         return dmtRepository.save(dmt).getId();
     }
 
+    /**
+     * Met à jour une DMT existante.
+     *
+     * @param id     L'identifiant de la DMT à mettre à jour.
+     * @param dmtDTO Les nouvelles données de la DMT.
+     */
     public void update(final Long id, final DmtDTO dmtDTO) {
         final Dmt dmt = dmtRepository.findById(id)
             .orElseThrow(NotFoundException::new);
@@ -93,9 +129,22 @@ public class DmtService {
         dmtRepository.save(dmt);
     }
 
+    /**
+     * Supprime une DMT par son identifiant.
+     *
+     * @param id L'identifiant de la DMT à supprimer.
+     */
     public void delete(final Long id) {
         dmtRepository.deleteById(id);
     }
+
+    /**
+     * Convertit une entité DMT en DTO.
+     *
+     * @param dmt    L'entité DMT à convertir.
+     * @param dmtDTO Le DTO à remplir.
+     * @return Le DTO rempli.
+     */
 
     private DmtDTO mapToDTO(final Dmt dmt, final DmtDTO dmtDTO) {
 
@@ -114,6 +163,12 @@ public class DmtService {
         return dmtDTO;
     }
 
+    /**
+     * Convertit un DTO en entité DMT.
+     *
+     * @param dmtDTO Le DTO à convertir.
+     * @param dmt    L'entité à remplir.
+     */
     private Dmt mapToEntity(final DmtDTO dmtDTO, final Dmt dmt) {
 
         dmt.setNumArticleL143(dmtDTO.getNumArticleL143());
