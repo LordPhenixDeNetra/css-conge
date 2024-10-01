@@ -1,1 +1,157 @@
-<p>sidbar works!</p>
+<!-- Sidebar -->
+<nav class="sidebar">
+    <div class="sidebar-brand">
+        <img src="/api/placeholder/150/40" alt="IPRES Logo" class="img-fluid">
+    </div>
+    <div class="px-3 py-4">
+        <div class="text-center mb-4">
+            <img src="/api/placeholder/100/100" alt="User Avatar" class="rounded-circle mb-2" width="64">
+            <h6 class="mb-0">Admin User</h6>
+            <small>Super Administrateur</small>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="bi bi-bar-chart"></i> Tableau de bord
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person"></i> Utilisateurs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person"></i> Rapports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person"></i> Paramètres
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <div class="container-fluid">
+        <div class="row h-100 align-items-center">
+            <div class="col">
+                <button class="btn sidebar-toggler">
+                    <i class="bi bi-person"></i>
+                </button>
+            </div>
+            <div class="col-auto">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Paramètres</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!--&lt;!&ndash; Main Content &ndash;&gt;-->
+<!--<main class="main-content">-->
+<!--    <div class="container-fluid">-->
+<!--        &lt;!&ndash; Dashboard Overview &ndash;&gt;-->
+<!--        <div class="row mb-4">-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.1s">-->
+<!--                <div class="card dashboard-card bg-primary text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Utilisateurs Total</h6>-->
+<!--                        <h2 class="mb-0">1,234</h2>-->
+<!--                        <small><i class="fas fa-arrow-up"></i> 12% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.2s">-->
+<!--                <div class="card dashboard-card bg-success text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Allocations Traitées</h6>-->
+<!--                        <h2 class="mb-0">856</h2>-->
+<!--                        <small><i class="fas fa-arrow-up"></i> 5% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.3s">-->
+<!--                <div class="card dashboard-card bg-warning text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">En Attente</h6>-->
+<!--                        <h2 class="mb-0">45</h2>-->
+<!--                        <small><i class="fas fa-arrow-down"></i> 3% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.4s">-->
+<!--                <div class="card dashboard-card bg-danger text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Cas Urgents</h6>-->
+<!--                        <h2 class="mb-0">12</h2>-->
+<!--                        <small><i class="fas fa-exclamation-triangle"></i> Action requise</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Recent Activity Table &ndash;&gt;-->
+<!--        <div class="row mb-4">-->
+<!--            <div class="col-12">-->
+<!--                <div class="card dashboard-card animate-fade-in" style="animation-delay: 0.5s">-->
+<!--                    <div class="card-header bg-white">-->
+<!--                        <h5 class="card-title mb-0">Activités Récentes</h5>-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="table-responsive">-->
+<!--                            <table class="table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>ID</th>-->
+<!--                                    <th>Utilisateur</th>-->
+<!--                                    <th>Action</th>-->
+<!--                                    <th>Date</th>-->
+<!--                                    <th>Statut</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <td>#12345</td>-->
+<!--                                    <td>Jean Dupont</td>-->
+<!--                                    <td>Nouvelle demande</td>-->
+<!--                                    <td>01/10/2024</td>-->
+<!--                                    <td><span class="badge bg-success">Approuvé</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>#12346</td>-->
+<!--                                    <td>Marie Martin</td>-->
+<!--                                    <td>Mise à jour profil</td>-->
+<!--                                    <td>01/10/2024</td>-->
+<!--                                    <td><span class="badge bg-info">En cours</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>#12347</td>-->
+<!--                                    <td>Paul Dubois</td>-->
+<!--                                    <td>Changement allocation</td>-->
+<!--                                    <td>30/09/2024</td>-->
+<!--                                    <td><span class="badge bg-warning">En attente</span></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->

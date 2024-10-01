@@ -16,6 +16,7 @@ import { ErrorComponent } from './error/error.component';
 import {SalarierInfoComponent} from "./salarier/salarier-info/salarier-info.component";
 import {DmtAddComponent} from "./dmt-add/dmt-add.component";
 import {UsersAdminComponent} from "./users/users-admin/users-admin.component";
+import {SidbarComponent} from "./common/sidbar/sidbar.component";
 
 
 export const routes: Routes = [
@@ -106,6 +107,12 @@ export const routes: Routes = [
     path: 'users-admin',
     component: UsersAdminComponent,
     title: $localize`:@@dmt.add.headline:Admin`
+  },
+
+  {
+    path: 'sidebar',
+    component: SidbarComponent,
+    // title: $localize`:@@dm.add.headline:Admin`
   },
 
   {

@@ -1,115 +1,247 @@
-<div class="container text-center">
-    <div class="row">
-        <div class="col n-div-left">
-            <ul class="list-group gap-2 ">
-                <li class="list-group-item">NIN : <span class="badge text-bg-secondary">{{ salarier.nin }}</span></li>
-                <li class="list-group-item">N0 Affiliation : <span
-                    class="badge text-bg-secondary">{{ salarier.numArticleL143 }}</span></li>
-                <li class="list-group-item">Prenom : {{ salarier.prenom }}</li>
-                <li class="list-group-item">Nom : {{ salarier.nom }}</li>
-                <li class="list-group-item">Telephone : {{ salarier.telephone1 }}</li>
-                <li class="list-group-item">Email : {{ salarier.email }}</li>
-            </ul>
-            <hr>
+<app-sidbar></app-sidbar>
 
-            <ul class="list-group gap-2 ">
-                <li class="list-group-item">Notification : <span class="badge text-bg-secondary">2</span></li>
-<!--                <li class="list-group-item">-->
-<!--                    <mat-accordion>-->
-<!--                        <mat-expansion-panel *ngFor="let pane of panelList; let i = index" (opened)="panelOpenState[i] = true" (closed)="panelOpenState[i] = false">-->
-<!--                            <mat-expansion-panel-header>-->
-<!--                                <mat-panel-title> {{ pane.user }} </mat-panel-title>-->
-<!--                                <mat-panel-description>-->
-<!--                                    Currently I am {{ panelOpenState[i] ? 'open' : 'closed' }}-->
-<!--                                </mat-panel-description>-->
-<!--                            </mat-expansion-panel-header>-->
-<!--                            <p>{{pane.message}}</p>-->
-<!--                        </mat-expansion-panel>-->
-<!--                    </mat-accordion>-->
-<!--                </li>-->
-            </ul>
-<!--            <mat-card appearance="outlined">-->
-<!--                <mat-card-header>-->
-<!--                    <mat-card-title>Poodle</mat-card-title>-->
-<!--                    <mat-card-subtitle>Non-sporting group</mat-card-subtitle>-->
-<!--                </mat-card-header>-->
-<!--                <mat-card-actions align="end">-->
-<!--                    <button mat-button>Learn More</button>-->
-<!--                </mat-card-actions>-->
-<!--            </mat-card>-->
-<!--            <mat-card appearance="outlined">-->
-<!--                <mat-card-header>-->
-<!--                    <mat-card-title>Poodle</mat-card-title>-->
-<!--                    <mat-card-subtitle>Non-sporting group</mat-card-subtitle>-->
-<!--                </mat-card-header>-->
-<!--                <mat-card-actions align="end">-->
-<!--                    <button mat-button>Learn More</button>-->
-<!--                </mat-card-actions>-->
-<!--            </mat-card>-->
-<!--            <mat-card appearance="outlined">-->
-<!--                <mat-card-header>-->
-<!--                    <mat-card-title>Poodle</mat-card-title>-->
-<!--                    <mat-card-subtitle>Non-sporting group</mat-card-subtitle>-->
-<!--                </mat-card-header>-->
-<!--                <mat-card-actions align="end">-->
-<!--                    <button mat-button>Learn More</button>-->
-<!--                </mat-card-actions>-->
-<!--            </mat-card>-->
-<!--            <mat-card *ngFor="let dog of dogs" appearance="outlined">-->
-<!--                <mat-card-header>-->
-<!--                    <mat-card-title>{{ dog.title }}</mat-card-title>-->
-<!--                    <mat-card-subtitle>{{ dog.subtitle }}</mat-card-subtitle>-->
-<!--                </mat-card-header>-->
-<!--                <mat-card-actions align="end">-->
-<!--                    <button mat-button>Learn More</button>-->
-<!--                </mat-card-actions>-->
-<!--            </mat-card>-->
 
-            <ng-container *ngIf="viewInit">
-                <mat-card *ngFor="let m of panelList" appearance="outlined">
-                    <mat-card-header>
-                        <mat-card-title>{{ m.id}}</mat-card-title>
-                        <mat-card-subtitle>{{ m.message }}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-actions align="end">
-                        <button mat-button>Learn More</button>
-                    </mat-card-actions>
-                </mat-card>
-            </ng-container>
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid">
+
+        <!-- Dashboard Overview -->
+        <div class="row mb-4">
+
+            <div class="col-md-6 mb-4 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="card dashboard-card bg-warning text-white">
+                    <div class="card-body">
+<!--                        <h6 class="card-title">En Attente</h6>-->
+<!--                        <h2 class="mb-0">45</h2>-->
+<!--                        <small><i class="fas fa-arrow-down"></i> 3% ce mois</small>-->
+<!--                            <ul class="list-group gap-2 ">-->
+                            <ul>
+                                <li class="list-group-item">NIN : <span class="badge text-bg-secondary">{{ salarier.nin }}</span></li>
+                                <li class="list-group-item">N0 Affiliation : <span
+                                    class="badge text-bg-secondary">{{ salarier.numArticleL143 }}</span></li>
+                                <li class="list-group-item">Prenom : {{ salarier.prenom }}</li>
+                                <li class="list-group-item">Nom : {{ salarier.nom }}</li>
+                                <li class="list-group-item">Telephone : {{ salarier.telephone1 }}</li>
+                                <li class="list-group-item">Email : {{ salarier.email }}</li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 animate-fade-in" style="animation-delay: 0.4s">
+                <div class="card dashboard-card bg-danger text-white">
+                    <div class="card-body">
+<!--                        <h6 class="card-title">Cas Urgents</h6>-->
+<!--                        <h2 class="mb-0">12</h2>-->
+<!--                        <small><i class="fas fa-exclamation-triangle"></i> Action requise</small>-->
+
+                        <div class="card" style="width: 100%;">
+                            <h4 class="">Information sur les demandes:</h4>
+                            <div *ngIf="this.demandeId == null" class="card-body">
+<!--                                <h4 class="card-title">INFO SUR LES DEMANDES</h4>-->
+                                <p class="card-text">Vous n'avez de demande pour le moment. Pour faire une demande veuillez cliquer
+                                    sur le boutton ci-dessous</p>
+                                <a [routerLink]="['/dossiers/add', salarier.id]" class="btn btn-primary">Faire une demande</a>
+                            </div>
+
+                            <div *ngIf="this.demandeId != null" class="card-body">
+<!--                                <h4 class="card-title">INFO SUR LES DEMANDES</h4>-->
+                                <p class="card-text">Status de la demande : </p>
+                                <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">
+                                    Voire info
+                                </button>
+                                <span
+                                    class="py-2 px-2 badge text-white text-bg-info">{{ this.salarierDemande.status?.toString().replaceAll("_", " ") }}
+                                </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.1s">-->
+<!--                <div class="card dashboard-card bg-primary text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Utilisateurs Total</h6>-->
+<!--                        <h2 class="mb-0">1,234</h2>-->
+<!--                        <small><i class="fas fa-arrow-up"></i> 12% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.2s">-->
+<!--                <div class="card dashboard-card bg-success text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Allocations Traitées</h6>-->
+<!--                        <h2 class="mb-0">856</h2>-->
+<!--                        <small><i class="fas fa-arrow-up"></i> 5% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.3s">-->
+<!--                <div class="card dashboard-card bg-warning text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">En Attente</h6>-->
+<!--                        <h2 class="mb-0">45</h2>-->
+<!--                        <small><i class="fas fa-arrow-down"></i> 3% ce mois</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.4s">-->
+<!--                <div class="card dashboard-card bg-danger text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <h6 class="card-title">Cas Urgents</h6>-->
+<!--                        <h2 class="mb-0">12</h2>-->
+<!--                        <small><i class="fas fa-exclamation-triangle"></i> Action requise</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
 
         </div>
-        <div class="col n-div-right">
 
-            <div class="card" style="width: 100%;">
-                <h4>Information sur les demandes:</h4>
-                <img ngSrc="css-img3.png" width="50" height="280" class="card-img-top" alt="...">
-                <!--                <div *ngIf="this.demande.id == null" class="card-body">-->
-                <div *ngIf="this.demandeId == null" class="card-body">
-                    <!--                    <h4 class="card-title">Pas de demande pour le moment</h4>-->
-                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>
-                    <p class="card-text">Vous n'avez de demande pour le moment. Pour faire une demande veuillez cliquer
-                        sur le boutton ci-dessous</p>
-                    <a [routerLink]="['/dossiers/add', salarier.id]" class="btn btn-primary">Faire une demande</a>
-                    <!--                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">-->
-                    <!--                        Voire info-->
-                    <!--                    </button>-->
-                    <!--                    <h2>{{this.demandeId}}</h2>-->
-                </div>
-                <!--                <div *ngIf="this.demande.id != null" class="card-body">-->
-                <div *ngIf="this.demandeId != null" class="card-body">
-                    <!--                    <h4 class="card-title">Vous avez une demande en cours</h4>-->
-                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>
-                    <p class="card-text">Status de la demande : </p>
-                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">
-                        Voire info
-                    </button>
-                    <!--                    <h2>{{this.demandeId}}</h2>-->
-                    <span
-                        class="py-2 px-2 badge text-white text-bg-info">{{ this.salarierDemande.status?.toString().replaceAll("_", " ") }}</span>
-                    <!--                    <span class="py-2 px-2 badge text-white text-bg-info">Status</span>-->
+        <!-- Recent Activity Table -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card dashboard-card animate-fade-in" style="animation-delay: 0.5s">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Activités Récentes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+<!--                            <table class="table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>ID</th>-->
+<!--                                    <th>Utilisateur</th>-->
+<!--                                    <th>Action</th>-->
+<!--                                    <th>Date</th>-->
+<!--                                    <th>Statut</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+
+
+<!--                                <tbody>-->
+
+<!--                                <tr>-->
+<!--                                    <td>#12345</td>-->
+<!--                                    <td>Jean Dupont</td>-->
+<!--                                    <td>Nouvelle demande</td>-->
+<!--                                    <td>01/10/2024</td>-->
+<!--                                    <td><span class="badge bg-success">Approuvé</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>#12346</td>-->
+<!--                                    <td>Marie Martin</td>-->
+<!--                                    <td>Mise à jour profil</td>-->
+<!--                                    <td>01/10/2024</td>-->
+<!--                                    <td><span class="badge bg-info">En cours</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>#12347</td>-->
+<!--                                    <td>Paul Dubois</td>-->
+<!--                                    <td>Changement allocation</td>-->
+<!--                                    <td>30/09/2024</td>-->
+<!--                                    <td><span class="badge bg-warning">En attente</span></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Utilisateur</th>
+                                    <th>Action</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let action of actions">
+                                    <td>{{ action.id }}</td>
+                                    <td>{{ action.utilisateur }}</td>
+                                    <td>{{ action.action }}</td>
+                                    <td>{{ action.date }}</td>
+<!--                                    <td>-->
+<!--                                        <span class="badge" [ngClass]="action.badge">{{ action.statut }}</span>-->
+<!--                                    </td>-->
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+
+
+
+
+
+<!--<div class="container text-center">-->
+<!--    <div class="row">-->
+<!--        <div class="col n-div-left">-->
+<!--            <ul class="list-group gap-2 ">-->
+<!--                <li class="list-group-item">NIN : <span class="badge text-bg-secondary">{{ salarier.nin }}</span></li>-->
+<!--                <li class="list-group-item">N0 Affiliation : <span-->
+<!--                    class="badge text-bg-secondary">{{ salarier.numArticleL143 }}</span></li>-->
+<!--                <li class="list-group-item">Prenom : {{ salarier.prenom }}</li>-->
+<!--                <li class="list-group-item">Nom : {{ salarier.nom }}</li>-->
+<!--                <li class="list-group-item">Telephone : {{ salarier.telephone1 }}</li>-->
+<!--                <li class="list-group-item">Email : {{ salarier.email }}</li>-->
+<!--            </ul>-->
+<!--            <hr>-->
+
+<!--            <ul class="list-group gap-2 ">-->
+<!--                <li class="list-group-item">Notification : <span class="badge text-bg-secondary">2</span></li>-->
+<!--            </ul>-->
+<!--            <ng-container *ngIf="viewInit">-->
+<!--                <mat-card *ngFor="let m of panelList" appearance="outlined">-->
+<!--                    <mat-card-header>-->
+<!--                        <mat-card-title>{{ m.id}}</mat-card-title>-->
+<!--                        <mat-card-subtitle>{{ m.message }}</mat-card-subtitle>-->
+<!--                    </mat-card-header>-->
+<!--                    <mat-card-actions align="end">-->
+<!--                        <button mat-button>Learn More</button>-->
+<!--                    </mat-card-actions>-->
+<!--                </mat-card>-->
+<!--            </ng-container>-->
+
+
+<!--        </div>-->
+<!--        <div class="col n-div-right">-->
+
+<!--            <div class="card" style="width: 100%;">-->
+<!--                <h4>Information sur les demandes:</h4>-->
+<!--                <img ngSrc="css-img3.png" width="50" height="280" class="card-img-top" alt="...">-->
+<!--                &lt;!&ndash;                <div *ngIf="this.demande.id == null" class="card-body">&ndash;&gt;-->
+<!--                <div *ngIf="this.demandeId == null" class="card-body">-->
+<!--                    &lt;!&ndash;                    <h4 class="card-title">Pas de demande pour le moment</h4>&ndash;&gt;-->
+<!--                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>-->
+<!--                    <p class="card-text">Vous n'avez de demande pour le moment. Pour faire une demande veuillez cliquer-->
+<!--                        sur le boutton ci-dessous</p>-->
+<!--                    <a [routerLink]="['/dossiers/add', salarier.id]" class="btn btn-primary">Faire une demande</a>-->
+<!--                    &lt;!&ndash;                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        Voire info&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <h2>{{this.demandeId}}</h2>&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;                <div *ngIf="this.demande.id != null" class="card-body">&ndash;&gt;-->
+<!--                <div *ngIf="this.demandeId != null" class="card-body">-->
+<!--                    &lt;!&ndash;                    <h4 class="card-title">Vous avez une demande en cours</h4>&ndash;&gt;-->
+<!--                    <h4 class="card-title">INFO SUR LES DEMANDES</h4>-->
+<!--                    <p class="card-text">Status de la demande : </p>-->
+<!--                    <button *ngIf="reloadable != null" class="btn btn-warning" (click)="handleReload()">-->
+<!--                        Voire info-->
+<!--                    </button>-->
+<!--                    &lt;!&ndash;                    <h2>{{this.demandeId}}</h2>&ndash;&gt;-->
+<!--                    <span-->
+<!--                        class="py-2 px-2 badge text-white text-bg-info">{{ this.salarierDemande.status?.toString().replaceAll("_", " ") }}</span>-->
+<!--                    &lt;!&ndash;                    <span class="py-2 px-2 badge text-white text-bg-info">Status</span>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
