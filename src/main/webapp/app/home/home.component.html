@@ -1,4 +1,155 @@
+<!-- Main Content -->
+<div class="main-content main-home-form">
 
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="main-heading">Entrez vos informations pour accéder à la page des congés .</h1>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+            <div class="login-box">
+                <img src="/api/placeholder/200/80" alt="IPRES-CSS" class="login-logo">
+                <form id="loginForm" [formGroup]="getUserForm" (ngSubmit)="handleSubmit()">
+                    <div class="mb-4">
+                        <label for="cni" class="visually-hidden">CIN OU NUMERO D'AFFILIATION</label>
+                        <div class="input-group">
+                            <input formControlName="nin" type="text" class="form-control" id="cni" name="cni" placeholder="CIN OU NUMERO D'AFFILIATION" required>
+                            <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">Veuillez entrer votre CNI ou NUM AFFILIATION.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="employeur" class="visually-hidden">NUMERO D'EMPLOYEUR</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="employeur" name="employeur" placeholder="NUMERO D'EMPLOYEUR" required>
+                            <span class="input-group-text password-toggle" role="button">
+                                 <i class="bi bi-person"></i>
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">Veuillez entrer le numero d'employeur.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-connexion w-100 mb-3">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        VERIFIER
+                    </button>
+<!--                    <div class="text-center">-->
+<!--                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>-->
+<!--                    </div>-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Toast Notification -->
+<div class="toast-container">
+    <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        const loginForm = document.getElementById('loginForm');-->
+<!--        const usernameInput = document.getElementById('username');-->
+<!--        const passwordInput = document.getElementById('password');-->
+<!--        const submitButton = loginForm.querySelector('button[type="submit"]');-->
+<!--        const spinner = submitButton.querySelector('.spinner-border');-->
+<!--        const toast = new bootstrap.Toast(document.querySelector('.toast'));-->
+<!--        const toastBody = document.querySelector('.toast-body');-->
+
+<!--        // Toggle password visibility-->
+<!--        document.querySelector('.password-toggle').addEventListener('click', function() {-->
+<!--            const icon = this.querySelector('i');-->
+<!--            if (passwordInput.type === 'password') {-->
+<!--                passwordInput.type = 'text';-->
+<!--                icon.classList.replace('fa-eye', 'fa-eye-slash');-->
+<!--            } else {-->
+<!--                passwordInput.type = 'password';-->
+<!--                icon.classList.replace('fa-eye-slash', 'fa-eye');-->
+<!--            }-->
+<!--        });-->
+
+<!--        // Real-time validation-->
+<!--        [usernameInput, passwordInput].forEach(input => {-->
+<!--            input.addEventListener('input', function() {-->
+<!--                validateInput(this);-->
+<!--                toggleSubmitButton();-->
+<!--            });-->
+<!--        });-->
+
+<!--        function validateInput(input) {-->
+<!--            if (input.value.trim() === '') {-->
+<!--                input.classList.add('is-invalid');-->
+<!--                return false;-->
+<!--            } else {-->
+<!--                input.classList.remove('is-invalid');-->
+<!--                return true;-->
+<!--            }-->
+<!--        }-->
+
+<!--        function toggleSubmitButton() {-->
+<!--            const isValid = validateInput(usernameInput) && validateInput(passwordInput);-->
+<!--            submitButton.disabled = !isValid;-->
+<!--        }-->
+
+<!--        // Form submission-->
+<!--        loginForm.addEventListener('submit', function(e) {-->
+<!--            e.preventDefault();-->
+
+<!--            if (!loginForm.checkValidity()) {-->
+<!--                e.stopPropagation();-->
+<!--                loginForm.classList.add('was-validated');-->
+<!--                return;-->
+<!--            }-->
+
+<!--            // Show loading state-->
+<!--            submitButton.disabled = true;-->
+<!--            spinner.style.display = 'inline-block';-->
+
+<!--            // Simulate API call-->
+<!--            setTimeout(() => {-->
+<!--                // Reset loading state-->
+<!--                submitButton.disabled = false;-->
+<!--                spinner.style.display = 'none';-->
+
+<!--                // Show success message-->
+<!--                toastBody.textContent = 'Connexion réussie ! Redirection en cours...';-->
+<!--                toast.show();-->
+
+<!--                // Simulate redirect-->
+<!--                setTimeout(() => {-->
+<!--                    window.location.href = '/dashboard';-->
+<!--                }, 2000);-->
+<!--            }, 1500);-->
+<!--        });-->
+
+<!--        // Initialize tooltips-->
+<!--        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));-->
+<!--        tooltipTriggerList.map(function (tooltipTriggerEl) {-->
+<!--            return new bootstrap.Tooltip(tooltipTriggerEl);-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+
+
+
+
+<!--
     <main>
         <div id="image-section" class="n-content-gauche">
 
@@ -31,7 +182,6 @@
 
                     <label class="label-EMP-V2">NUMERO D'EMPLOYEUR</label>
                     <input type="text" class="form-control EMP-V2" id="" aria-describedby="NINHelp">
-<!--                    <button>Demander</button>-->
                     <button type="submit" class=" ">Connexion</button>
                 </form>
 
@@ -57,4 +207,6 @@
             </div>
         </div>
     </main>
-<footer class="cd__credit">Caisse de securité sociale :  <a title="Free web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CSS</a></footer>
+
+ -->
+<!--<footer class="cd__credit">Caisse de securité sociale :  <a title="Free web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CSS</a></footer>-->

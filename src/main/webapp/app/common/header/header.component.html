@@ -1,70 +1,61 @@
-
-<!--
-<header class=" n-headers" style="background: #3A56FD;">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
-        <nav class="navbar navbar-light navbar-expand-md">
-            <a routerLink="/" class="navbar-brand bg-black py-1 px-3 rounded-2 ">
-                <img ngSrc="n-css-logo.svg" i18n-alt="@@app.title" alt="CSSConge" width="40" height="40" class="d-inline-block align-top">
-                <span class="ps-1" i18n="@@app.title" style="color: aliceblue; font-weight: bold">C S S</span>
-            </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
-                    i18n-aria-label="@@navigation.toggle" aria-label="Toggle navigation" aria-controls="navbarToggle" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-                <ul class="navbar-nav ms-auto">
-                    <li class="navbar-item">
-                        <a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a>
-                    </li>
-                    <li class="navbar-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarEntitiesLink" role="button"
-                                aria-expanded="false" i18n="@@navigation.entities">Entities</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarEntitiesLink">
-                            <li><a routerLink="/salariers" class="dropdown-item" i18n="@@salarier.list.headline">Salariers</a></li>
-                            <li><a routerLink="/sites" class="dropdown-item" i18n="@@site.list.headline">Sites</a></li>
-                            <li><a routerLink="/dossiers" class="dropdown-item" i18n="@@dossier.list.headline">Dossiers</a></li>
-                            <li><a routerLink="/demandeConges" class="dropdown-item" i18n="@@demandeConge.list.headline">Demande Conges</a></li>
-                            <li><a routerLink="/salarierInfo/info" class="dropdown-item" i18n="@@demandeConge.list.headline">Conges Info</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        <a class="navbar-brand" href="#">
+            <img src="/api/placeholder/150/50" alt="IPRES-CSS">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2" href="#">EMPLOYEUR</a>
+                <a class="nav-link mx-2" href="#">SALARIÉ</a>
+                <a class="nav-link mx-2" href="#">ALLOCATAIRE</a>
+                <a class="btn btn-outline-light mx-2" href="#">INSCRIPTION</a>
+                <a class="btn btn-danger mx-2" href="#">CONNEXION →</a>
             </div>
-        </nav>
-    </div>
-</header>
--->
-
-<nav>
-    <div class="logo">
-        <h1><a routerLink="/" class="navbar-brand py-1 px-3 rounded-2 ">CSS</a></h1>
-    </div>
-    <ul id="menuList">
-        <li><a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a></li>
-        <li><a href="">A propos</a></li>
-        <li><a href="">Services</a></li>
-        <li><a href="">Product</a></li>
-        <li><a href="">Contact</a></li>
-    </ul>
-    <div class="menu-icon">
-        <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        </div>
     </div>
 </nav>
 
 
-<script>
-    let menuList = document.getElementById("menuList")
-    menuList.style.maxHeight = "0px";
 
-    function toggleMenu(){
-        if(menuList.style.maxHeight == "0px")
-        {
-            menuList.style.maxHeight = "300px";
-        }
-        else{
-            menuList.style.maxHeight = "0px";
-        }
-    }
 
-</script>
-<script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
+
+
+
+
+<!--<nav>-->
+<!--    <div class="logo">-->
+<!--        <h1><a routerLink="/" class="navbar-brand py-1 px-3 rounded-2 ">CSS</a></h1>-->
+<!--    </div>-->
+<!--    <ul id="menuList">-->
+<!--        <li><a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a></li>-->
+<!--        <li><a href="">A propos</a></li>-->
+<!--        <li><a href="">Services</a></li>-->
+<!--        <li><a href="">Product</a></li>-->
+<!--        <li><a href="">Contact</a></li>-->
+<!--    </ul>-->
+<!--    <div class="menu-icon">-->
+<!--        <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<script>-->
+<!--    let menuList = document.getElementById("menuList")-->
+<!--    menuList.style.maxHeight = "0px";-->
+
+<!--    function toggleMenu(){-->
+<!--        if(menuList.style.maxHeight == "0px")-->
+<!--        {-->
+<!--            menuList.style.maxHeight = "300px";-->
+<!--        }-->
+<!--        else{-->
+<!--            menuList.style.maxHeight = "0px";-->
+<!--        }-->
+<!--    }-->
+
+<!--</script>-->
+<!--<script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>-->
+
 

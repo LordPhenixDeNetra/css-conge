@@ -49,6 +49,7 @@ import {MatButton} from "@angular/material/button";
   styleUrl: './salarier-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 
+
 })
 export class SalarierInfoComponent implements OnInit, AfterViewInit{
 
@@ -58,6 +59,8 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
   demandeId : number | null;
   reloadable! : string | null;
   // readonly panelOpenState = signal(false)
+
+  viewInit : boolean = false;
 
   panels = [
     { name: 'Panel 1' },
@@ -100,6 +103,7 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
+
     this.salarierMessage.findAllMessageBySalarierId(this.salarier.id).subscribe({
       next: (data) => {
         this.messages = data;
@@ -118,6 +122,7 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
+    this.viewInit = true;
     let salarierData = localStorage.getItem('salarier');
     let demandeData : string = String(localStorage.getItem('demandeConge'));
     this.salarierDemande = JSON.parse(demandeData);
@@ -141,6 +146,15 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
             console.log("Demande ID=================================");
             console.log("DEMANDE ID : ", this.demandeId);
             console.log("Demande ID========================");
+
+            this.salarierMessage.findAllMessageBySalarierId(this.salarier.id).subscribe({
+              next: (data) => {
+                this.messages = data;
+                this.panelList = data;
+                console.log(data)
+              }
+              // error: (error) => this.errorHandler.handleServerError(error.error)
+            });
           }
         )
       }
@@ -160,4 +174,5 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
     this.setNullReloadable();
     location.reload();
   }
+
 }

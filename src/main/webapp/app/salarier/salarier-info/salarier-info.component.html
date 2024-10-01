@@ -65,15 +65,19 @@
 <!--                </mat-card-actions>-->
 <!--            </mat-card>-->
 
-            <mat-card *ngFor="let m of messages" appearance="outlined">
-                <mat-card-header>
-                    <mat-card-title>{{ m.user }}</mat-card-title>
-                    <mat-card-subtitle>{{ m.message }}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-actions align="end">
-                    <button mat-button>Learn More</button>
-                </mat-card-actions>
-            </mat-card>
+            <ng-container *ngIf="viewInit">
+                <mat-card *ngFor="let m of panelList" appearance="outlined">
+                    <mat-card-header>
+                        <mat-card-title>{{ m.id}}</mat-card-title>
+                        <mat-card-subtitle>{{ m.message }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button>Learn More</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
+
+
         </div>
         <div class="col n-div-right">
 
