@@ -1,24 +1,169 @@
 
-<div class="d-flex flex-wrap mb-4">
-    <h1 class="flex-grow-1" i18n="@@salarier.add.headline">Add Salarier</h1>
-    <div>
-        <a routerLink="/salariers" class="btn btn-secondary" i18n="@@salarier.add.back">Back to list</a>
+<!-- Main Content -->
+<div class="main-content main-home-form">
+
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="main-heading">Entrez vos informations pour ajouter le DMT.</h1>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+            <div class="login-box">
+                <img src="/api/placeholder/200/80" alt="IPRES-CSS" class="login-logo">
+                <form id="loginForm" [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label for="matricule" class="visually-hidden">NUMERO D'AFFILIATION</label>
+                                <div class="input-group">
+                                    <input formControlName="numArticleL143" type="text" class="form-control" id="matricule" name="matricule" placeholder="Matricule" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre matricule.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="nin" class="visually-hidden">NIN</label>
+                                <div class="input-group">
+                                    <input formControlName="nin" type="text" class="form-control" id="nin" name="nin" placeholder="NIN" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre NIN.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="prenom" class="visually-hidden">Prenom</label>
+                                <div class="input-group">
+                                    <input formControlName="prenom" type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Prenom.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="nom" class="visually-hidden">Nom</label>
+                                <div class="input-group">
+                                    <input formControlName="nom" type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Nom.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="dateNaissane" class="visually-hidden">Date de Naissance</label>
+                                <div class="input-group">
+                                    <input formControlName="dateNaissane" type="date" class="form-control" id="dateNaissane" name="dateNaissane" placeholder="Date de Naissane" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Date de Naissance.</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label for="lieuNaissance" class="visually-hidden">Lieux de Naissance</label>
+                                <div class="input-group">
+                                    <input formControlName="lieuNaissance" type="text" class="form-control" id="lieuNaissance" name="lieuNaissance" placeholder="Lieux de Naissane" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Lieux de Naissance.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="visually-hidden">Email</label>
+                                <div class="input-group">
+                                    <input formControlName="email" type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Email.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="telephone1" class="visually-hidden">Telephone</label>
+                                <div class="input-group">
+                                    <input formControlName="telephone1" type="tel" class="form-control" id="telephone1" name="telephone1" placeholder="Telephone" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Telephone.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="document" class="n-label">Document</label>
+                                <div class="input-group">
+                                    <input formControlName="document" (change)="onFileSelected($event)"  type="file" class="form-control" id="document" name="document" placeholder="Document" required>
+                                    <span class="input-group-text">
+                                <i class="bi bi-card-list "></i>
+                            </span>
+                                </div>
+                                <div class="invalid-feedback">Entrez votre Document.</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <button type="submit" class="btn btn-connexion w-100 mb-3">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        VERIFIER
+                    </button>
+                    <!--                    <div class="text-center">-->
+                    <!--                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>-->
+                    <!--                    </div>-->
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<form [formGroup]="addForm" (ngSubmit)="handleSubmit()" class="mx-5 my-5">
-    <app-input-row [group]="addForm" field="numArticleL143" i18n-label="@@dmt.numArticleL143.label" label="Num Article L143" />
-    <app-input-row [group]="addForm" field="nin" i18n-label="@@dmt.nin.label" label="Nin" />
-    <app-input-row [group]="addForm" field="prenom" i18n-label="@@dmt.prenom.label" label="Prenom" />
-    <app-input-row [group]="addForm" field="nom" i18n-label="@@dmt.nom.label" label="Nom" />
-    <app-input-row [group]="addForm" field="dateNaissane" datepicker="datepicker" i18n-label="@@dmt.dateNaissane.label" label="Date Naissane" />
-    <app-input-row [group]="addForm" field="lieuNaissance" i18n-label="@@dmt.lieuNaissance.label" label="Lieu Naissance" />
-    <app-input-row [group]="addForm" field="adresse" i18n-label="@@dmt.adresse.label" label="Adresse" />
-    <app-input-row [group]="addForm" field="email" i18n-label="@@dmt.email.label" label="Email" />
-    <app-input-row [group]="addForm" field="telephone1" i18n-label="@@dmt.telephone1.label" label="Telephone1" />
-
-    <app-input-row [group]="addForm" rowType="file" field="document" (change)="onFileSelected($event)" i18n-label="@@dmt.document.label" label="Document" />
 
 
-<!--    <app-input-row [group]="addForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site"></app-input-row>-->
-    <input type="submit" i18n-value="@@salarier.add.headline" value="Add Salarier" class="btn btn-primary mt-4" />
-</form>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="d-flex flex-wrap mb-4">-->
+<!--    <h1 class="flex-grow-1" i18n="@@salarier.add.headline">Add Salarier</h1>-->
+<!--    <div>-->
+<!--        <a routerLink="/salariers" class="btn btn-secondary" i18n="@@salarier.add.back">Back to list</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<form [formGroup]="addForm" (ngSubmit)="handleSubmit()" class="mx-5 my-5">-->
+<!--    <app-input-row [group]="addForm" field="numArticleL143" i18n-label="@@dmt.numArticleL143.label" label="Num Article L143" />-->
+<!--    <app-input-row [group]="addForm" field="nin" i18n-label="@@dmt.nin.label" label="Nin" />-->
+<!--    <app-input-row [group]="addForm" field="prenom" i18n-label="@@dmt.prenom.label" label="Prenom" />-->
+<!--    <app-input-row [group]="addForm" field="nom" i18n-label="@@dmt.nom.label" label="Nom" />-->
+<!--    <app-input-row [group]="addForm" field="dateNaissane" datepicker="datepicker" i18n-label="@@dmt.dateNaissane.label" label="Date Naissane" />-->
+<!--    <app-input-row [group]="addForm" field="lieuNaissance" i18n-label="@@dmt.lieuNaissance.label" label="Lieu Naissance" />-->
+<!--    <app-input-row [group]="addForm" field="adresse" i18n-label="@@dmt.adresse.label" label="Adresse" />-->
+<!--    <app-input-row [group]="addForm" field="email" i18n-label="@@dmt.email.label" label="Email" />-->
+<!--    <app-input-row [group]="addForm" field="telephone1" i18n-label="@@dmt.telephone1.label" label="Telephone1" />-->
+
+<!--    <app-input-row [group]="addForm" rowType="file" field="document" (change)="onFileSelected($event)" i18n-label="@@dmt.document.label" label="Document" />-->
+
+
+<!--&lt;!&ndash;    <app-input-row [group]="addForm" field="site" rowType="select" [options]="siteValues" i18n-label="@@salarier.site.label" label="Site"></app-input-row>&ndash;&gt;-->
+<!--    <input type="submit" i18n-value="@@salarier.add.headline" value="Add Salarier" class="btn btn-primary mt-4" />-->
+<!--</form>-->

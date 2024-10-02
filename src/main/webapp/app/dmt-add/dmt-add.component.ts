@@ -7,6 +7,7 @@ import {ErrorHandler} from "../common/error-handler.injectable";
 import {SalarierDTO} from "../salarier/salarier.model";
 import {DmtService} from "./dmt.service";
 import {DmtDTO} from "./dmt.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-dmt-add',
@@ -25,6 +26,7 @@ export class DmtAddComponent {
   dmtService = inject(DmtService);
   router = inject(Router);
   errorHandler = inject(ErrorHandler);
+  toater = inject(ToastrService);
 
   siteValues?: Map<number,string>;
   // siteValues?: { id: number, name: string }[];
@@ -78,12 +80,24 @@ export class DmtAddComponent {
     const data = new DmtDTO(this.addForm.value);
     this.dmtService.createDmtWithFile(data, this.selectedFile)
       .subscribe({
-        next: () => this.router.navigate(['/salariers'], {
-          state: {
-            msgSuccess: this.getMessage('created')
-          }
-        }),
-        error: (error) => this.errorHandler.handleServerError(error.error, this.addForm, this.getMessage)
+        next: () => {
+          this.toater.success(
+            this.addForm.value.prenom + " " + this.addForm.value.nom + "Votre DMT est ajouté evec succes evenez dans 2 jours pour faire votre demande",
+            "Ajout DMT"
+          )
+          // this.router.navigate(['/salariers'], {
+          //   // state: {
+          //   //   msgSuccess: this.getMessage('created')
+          //   // }
+          // })
+        },
+        error: (error) => {
+          this.toater.error(
+            "Reverifier les informations entrer",
+            "Ajout DMT"
+          )
+          // this.errorHandler.handleServerError(error.error, this.addForm, this.getMessage)
+        }
       });
   }
 

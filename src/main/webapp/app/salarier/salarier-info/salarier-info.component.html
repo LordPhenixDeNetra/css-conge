@@ -149,18 +149,20 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Utilisateur</th>
-                                    <th>Action</th>
-                                    <th>Date</th>
-                                    <th>Statut</th>
+                                    <th>Message</th>
+                                    <th>Sender</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let action of actions">
-                                    <td>{{ action.id }}</td>
-                                    <td>{{ action.utilisateur }}</td>
-                                    <td>{{ action.action }}</td>
-                                    <td>{{ action.date }}</td>
+                                <tr *ngFor="let pan of panelList">
+<!--                                    <td>{{ action.id }}</td>-->
+<!--                                    <td>{{ action.utilisateur }}</td>-->
+<!--                                    <td>{{ action.action }}</td>-->
+<!--                                    <td>{{ action.date }}</td>-->
+
+                                    <td>{{ pan.id }}</td>
+                                    <td>{{ pan.message }}</td>
+                                    <td>{{ pan.user }}</td>
 <!--                                    <td>-->
 <!--                                        <span class="badge" [ngClass]="action.badge">{{ action.statut }}</span>-->
 <!--                                    </td>-->

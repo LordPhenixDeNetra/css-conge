@@ -8,6 +8,7 @@ import { DossierDTO } from 'app/dossier/dossier.model';
 import { ErrorHandler } from 'app/common/error-handler.injectable';
 import {DemandeCongeService} from "../demande-conge/demande-conge.service";
 import {DemandeCongeDTO} from "../demande-conge/demande-conge.model";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class DossierAddComponent implements OnInit{
   router = inject(Router);
   errorHandler = inject(ErrorHandler);
   route = inject(ActivatedRoute);
+  toater = inject(ToastrService);
 
   addForm = new FormGroup({
     attestationTravail: new FormControl(null, [Validators.required]),
@@ -78,16 +80,16 @@ export class DossierAddComponent implements OnInit{
               localStorage.setItem('demandeConge', JSON.stringify(response));
             }
           );
-
         }
-
         this.router.navigate([`/salarierInfo/info/${this.salarierId}`]);
-
-        // path: 'salarierInfo/info/:id',
       },
       error => {
+        this.toater.error(
+          "Verifier bien vos information",
+          "Creation de Dossier"
+        )
         console.error('Erreur lors de l\'envoi des données', error);
-        alert('Erreur lors de la création du dossier.');
+        // alert('Erreur lors de la création du dossier.');
       }
 
     );

@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidbar',
@@ -9,7 +10,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SidbarComponent implements OnInit{
 
+  router = inject(Router);
+
   ngOnInit() {
   }
 
+  handleLogoutSalarier() {
+    localStorage.removeItem("demandeConge");
+    localStorage.removeItem("firstReload");
+    localStorage.removeItem("reloadable");
+    localStorage.removeItem("salarier");
+    this.router.navigate([``]);
+
+  }
 }

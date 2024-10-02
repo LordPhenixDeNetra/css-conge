@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, On
 import {Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {InputRowComponent} from "../../common/input-row/input-row.component";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {DemandeCongeService} from "../../demande-conge/demande-conge.service";
 import {DemandeCongeDTO} from "../../demande-conge/demande-conge.model";
 import {parseJson} from "@angular/cli/src/utilities/json-file";
@@ -44,7 +44,7 @@ import {SidbarComponent} from "../../common/sidbar/sidbar.component";
     MatCard,
     MatChip,
 
-    MatCardModule, MatChipsModule, MatProgressBarModule, MatButton, SidbarComponent
+    MatCardModule, MatChipsModule, MatProgressBarModule, MatButton, SidbarComponent, NgClass
   ],
   templateUrl: './salarier-info.component.html',
   styleUrl: './salarier-info.component.scss',
@@ -113,21 +113,13 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
 
-    this.salarierMessage.findAllMessageBySalarierId(this.salarier.id).subscribe({
-      next: (data) => {
-        this.messages = data;
-        this.panelList = data;
-        console.log(data)
-      }
-      // error: (error) => this.errorHandler.handleServerError(error.error)
-    });
-
-
-    // this.salarierMessage.findAllMessageBySalarierId(this.salarier.id).subscribe((data: NMessageDTO[]) => {
-    //   this.panels = data;
-    //   this.panelOpenState = new Array(this.panels.length).fill(false);
+    // this.salarierMessage.findAllMessageBySalarierId(this.salarier.id).subscribe({
+    //   next: (data) => {
+    //     this.messages = data;
+    //     this.panelList = data;
+    //     console.log(data)
+    //   }
     // });
-
   }
 
   ngOnInit(): void {
@@ -160,7 +152,7 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
               next: (data) => {
                 this.messages = data;
                 this.panelList = data;
-                console.log(data)
+                console.log("Message",data)
               }
               // error: (error) => this.errorHandler.handleServerError(error.error)
             });
