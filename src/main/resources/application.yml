@@ -1,4 +1,12 @@
 spring:
+
+  web:
+    cors:
+      allowed-origins: "http://localhost:4200"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
+
   datasource:
 #    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/CSSConge}
     url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/prestation_dev}
@@ -53,7 +61,7 @@ springdoc:
   pathsToMatch: /api/**
 
 
-# spring.devtools.remote.restart.enabled=false  
+# spring.devtools.remote.restart.enabled=false
 
 
 file:

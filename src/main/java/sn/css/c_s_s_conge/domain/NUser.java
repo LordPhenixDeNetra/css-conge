@@ -95,7 +95,7 @@ public class NUser {
      * Sexe de l'utilisateur (0 pour masculin, 1 pour féminin).
      */
     @Column
-    private Long sexe;
+    private long sexe;
 
     /**
      * Numéro d'identification national de l'utilisateur.

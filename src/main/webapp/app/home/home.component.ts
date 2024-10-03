@@ -29,12 +29,9 @@ import {ToastrModule, ToastrService} from "ngx-toastr";
 export class HomeComponent implements OnInit{
 
   environment = environment;
-
   demandeJsonData!: DemandeCongeDTO;
-
   errorHandler = inject(ErrorHandler);
   demandeCongeService = inject(DemandeCongeService);
-
   demandeJsonDataId! : number;
 
   constructor(private salarierService: SalarierService,
@@ -63,8 +60,10 @@ export class HomeComponent implements OnInit{
 
   handleSubmit() {
     if (this.getUserForm.valid) {
+
       let ninSalarier = this.getUserForm.value.nin;
       console.log(ninSalarier)
+
       this.salarierService.getSalarierByNin(String(ninSalarier)).subscribe(
         (response) => {
           let salarierId = response.id;

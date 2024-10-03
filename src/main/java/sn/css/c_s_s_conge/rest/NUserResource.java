@@ -6,10 +6,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.css.c_s_s_conge.model.DmtDTO;
+import sn.css.c_s_s_conge.model.LoginRequest;
 import sn.css.c_s_s_conge.model.NUserDTO;
 import sn.css.c_s_s_conge.service.DmtService;
 import sn.css.c_s_s_conge.service.NUserService;
 import sn.css.c_s_s_conge.util.NotFoundException;
+
+import java.util.List;
 
 /**
  * Contrôleur REST pour gérer les requêtes liées aux user-admin.
@@ -23,17 +26,27 @@ public class NUserResource {
 
     private final NUserService userService;
 
+
     /**
-     * Obtient un User par son identifiant.
+     * Récupère toutes les Users disponibles.
      *
-     * @param email L'email du User.
-     * @param password mot de passe du User.
+     * @return Une liste de UserDTO représentant toutes les Users.
+     */
+    @GetMapping
+    public ResponseEntity<List<NUserDTO>> getAllUsers() {
+        return ResponseEntity.ok(userService.findAll());
+    }
+
+    /**
+     * Obtient un User par ses identifiants.
+     *
+     * @param loginRequest .
      * @return Le ResponseEntity<NUserDTO>.
      * @throws NotFoundException Si le User n'est pas trouvé.
      */
-    @GetMapping("/{email}/{password}")
-    public ResponseEntity<NUserDTO> loginAdmin(@PathVariable(name = "email") final String email,
-                                           @PathVariable(name = "password") final String password) {
-        return ResponseEntity.ok(userService.loginAdmin(email, password));
+    @PostMapping("/login")
+    public ResponseEntity<NUserDTO> loginAdmin(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok(userService.loginAdmin(loginRequest.getEmail(), loginRequest.getPassword()));
     }
+
 }

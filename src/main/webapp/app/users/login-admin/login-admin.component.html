@@ -1,1 +1,54 @@
-<p>login-admin works!</p>
+<!-- Main Content -->
+<div class="main-content main-home-form">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="main-heading">Entrez vos informations pour accéder à la page des congés .</h1>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+            <div class="login-box">
+                <img src="/api/placeholder/200/80" alt="IPRES-CSS" class="login-logo">
+                <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="handleSubmit()" class="mt-5">
+                    <div class="mb-4">
+                        <label for="email" class="visually-hidden">EMAIL</label>
+                        <div class="input-group">
+                            <input formControlName="email" type="email" class="form-control" id="email" name="email" placeholder="EMAIL" required>
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope-at-fill"></i>
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">Veuillez entrer votre email.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="visually-hidden">MOT DE PASSE</label>
+                        <div class="input-group">
+                            <input formControlName="password" type="password" class="form-control" id="password" name="password" placeholder="MOT DE PASSE" required>
+                            <span class="input-group-text password-toggle" role="button">
+                                <i class="bi bi-eye-fill"></i>
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">Veuillez entrer mot de passe.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-connexion w-100 mb-3">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        CONNEXION
+                    </button>
+                    <div class="text-center">
+                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast-container">
+    <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>

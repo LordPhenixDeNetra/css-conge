@@ -17,6 +17,7 @@ import {SalarierInfoComponent} from "./salarier/salarier-info/salarier-info.comp
 import {DmtAddComponent} from "./dmt-add/dmt-add.component";
 import {UsersAdminComponent} from "./users/users-admin/users-admin.component";
 import {SidbarComponent} from "./common/sidbar/sidbar.component";
+import {LoginAdminComponent} from "./users/login-admin/login-admin.component";
 
 
 export const routes: Routes = [
@@ -107,6 +108,12 @@ export const routes: Routes = [
     path: 'users-admin',
     component: UsersAdminComponent,
     title: $localize`:@@dmt.add.headline:Admin`
+  },
+
+  {
+    path: 'login-admin',
+    component: LoginAdminComponent,
+    title: $localize`:@@admin.login.headline:LoginAdmin`
   },
 
   {

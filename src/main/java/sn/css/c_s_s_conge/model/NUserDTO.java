@@ -65,7 +65,7 @@ public class NUserDTO {
     /**
      * Sexe de l'utilisateur (0 pour masculin, 1 pour féminin).
      */
-    private Long sexe;
+    private long sexe;
 
     /**
      * Numéro d'identification national de l'utilisateur.

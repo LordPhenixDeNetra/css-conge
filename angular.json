@@ -37,7 +37,8 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/main/webapp/app/common/sidbar/sidebar.js"
+              "src/main/webapp/app/common/sidbar/sidebar.js",
+              "src/main/webapp/app/users/login-admin/login-admin.js"
             ]
           },
           "configurations": {
@@ -114,7 +115,8 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/main/webapp/app/common/sidbar/sidebar.js"
+              "src/main/webapp/app/common/sidbar/sidebar.js",
+              "src/main/webapp/app/users/login-admin/login-admin.js"
             ]
           }
         }

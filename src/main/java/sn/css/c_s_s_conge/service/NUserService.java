@@ -1,14 +1,10 @@
 package sn.css.c_s_s_conge.service;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sn.css.c_s_s_conge.domain.NUser;
-import sn.css.c_s_s_conge.domain.NUser;
-import sn.css.c_s_s_conge.domain.NUser;
-import sn.css.c_s_s_conge.domain.Salarier;
-import sn.css.c_s_s_conge.model.NUserDTO;
 import sn.css.c_s_s_conge.model.NUserDTO;
 import sn.css.c_s_s_conge.repos.NUserRepository;
 import sn.css.c_s_s_conge.util.NotFoundException;
@@ -24,7 +20,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class NUserService {
+
     private final NUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Crée un nouveau User à partir d'un DTO.
@@ -72,9 +70,29 @@ public class NUserService {
      * @throws NotFoundException Si le User n'est pas trouvé.
      */
     public NUserDTO loginAdmin(String email, String password) {
-        return userRepository.findNUserByEmailIgnoreCaseAndPasswordAndActifTrue(email, password)
-            .map(user -> mapToDTO(user, new NUserDTO()))
-            .orElseThrow(NotFoundException::new);
+        NUser user = userRepository.findNUserByEmailIgnoreCaseAndActifTrue(email);
+        if (user != null && verifyPassword(password, user.getPassword())){
+            System.out.println("============================================");
+            System.out.println(verifyPassword(password, user.getPassword()));
+            System.out.println("============================================");
+
+            return mapToDTO(user, new NUserDTO());
+        }
+        System.out.println("============================================");
+        System.out.println("password send: " + password);
+        System.out.println("password from BD : " + user.getPassword());
+        System.out.println(verifyPassword(password, user.getPassword()));
+        System.out.println("============================================");
+        return null;
+    }
+
+    public boolean verifyPassword(String rawPassword, String storedHash) {
+        return passwordEncoder.matches(rawPassword, storedHash);
+    }
+
+    // Pour créer un nouveau hash lors de l'inscription
+    public String hashPassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
     }
 
 
