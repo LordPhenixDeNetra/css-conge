@@ -14,8 +14,8 @@
             <div class="col-md-3 mb-4 animate-fade-in" style="animation-delay: 0.1s">
                 <div class="card dashboard-card bg-primary text-white">
                     <div class="card-body">
-                        <h6 class="card-title">Utilisateurs Total</h6>
-                        <h2 class="mb-0">1,234</h2>
+                        <h6 class="card-title">Demandes Total</h6>
+                        <h2 class="mb-0">{{lenDemande}}</h2>
                         <small><i class="fas fa-arrow-up"></i> 12% ce mois</small>
                     </div>
                 </div>
@@ -81,21 +81,34 @@
                                                         aria-label="Boutton Pour télécharger"
                                                         matTooltipPosition="above"
                                                         (click)="downloadFile(element.id)">
-                                                    <mat-icon>download</mat-icon>
+                                                    <mat-icon class="text-primary" >download</mat-icon>
                                                 </button>
                                                 <button mat-icon-button
                                                         matTooltip="Visualiser !"
                                                         aria-label="Boutton Pour Visualiser"
                                                         matTooltipPosition="above"
                                                         (click)="viewFile(element.id)">
-                                                    <mat-icon>visibility</mat-icon>
+                                                    <mat-icon class="text-warning" >visibility</mat-icon>
                                                 </button>
 <!--                                                <button mat-icon-button (click)="viewFileInIframe(element.id)">-->
 <!--                                                    <mat-icon>open_in_browser</mat-icon>-->
 <!--                                                </button>-->
                                             </div>
                                             <div class="d-flex" *ngIf="title == 'Actions' ">
-                                                <span>SSS</span>
+                                                <button mat-icon-button
+                                                        matTooltip="Valider!"
+                                                        aria-label="Boutton Pour Valider"
+                                                        matTooltipPosition="above"
+                                                        (click)="downloadFile(element.id)">
+                                                    <mat-icon class="text-success" >check_circle</mat-icon>
+                                                </button>
+                                                <button mat-icon-button
+                                                        matTooltip="Invalider!"
+                                                        aria-label="Boutton Pour Ivalider"
+                                                        matTooltipPosition="above"
+                                                        (click)="downloadFile(element.id)">
+                                                    <mat-icon class="text-danger" >cancel</mat-icon>
+                                                </button>
                                             </div>
 
                                         </td>

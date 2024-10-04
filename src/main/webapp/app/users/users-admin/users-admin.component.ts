@@ -66,6 +66,8 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
   private _liveAnnouncer = inject(LiveAnnouncer);
   private dmtService = inject(DmtService);
 
+  lenDemande = 0
+
   displayedColumns: string[] = DmtDTO.getAttributeNames();
   dataSource!: MatTableDataSource<DmtDTO, MatPaginator>;
 
@@ -118,25 +120,6 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  // loadData() {
-  //   this.dmtService.getAllDmts()
-  //     .subscribe({
-  //       next: (data) => {
-  //         this.dataSource = new MatTableDataSource<DmtDTO>(data);
-  //         this.dataSource.paginator = this.paginator;
-  //         this.displayedColumns = DmtDTO.getAttributeNames();
-  //         this.dataSource.sort = this.sort;
-  //
-  //         if (!this.displayedColumns.includes('actions')) {
-  //           this.displayedColumns.push('actions');
-  //         }
-  //       },
-  //       error: (error) => {
-  //         console.log("Error");
-  //       }
-  //     });
-  // }
-
   loadData() {
     this.dmtService.getAllDmts()
       .subscribe({
@@ -144,6 +127,8 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
           this.dataSource = new MatTableDataSource<DmtDTO>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+
+          this.lenDemande = data.length;
 
           if (!this.displayedColumns.includes('Fichier')) {
             this.displayedColumns.push('Fichier');
@@ -177,18 +162,6 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
-
-  handleDelete(element: any) {
-
-  }
-
-  editElement(element: any) {
-
-  }
-
-  deleteElement(element: any) {
-
   }
 
   protected readonly MatTooltip = MatTooltip;
