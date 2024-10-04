@@ -27,51 +27,47 @@ import {SidbarComponent} from "../../common/sidbar/sidbar.component";
 @Component({
   selector: 'app-users-admin',
   standalone: true,
-    imports: [
-        MatTabGroup,
-        MatTab,
-        MatTable,
-        MatPaginator,
-        MatHeaderRow,
-        MatRow,
-        MatColumnDef,
-        MatHeaderCell,
-        MatCell,
-        MatCellDef,
-        MatHeaderCellDef,
-        MatHeaderRowDef,
-        MatRowDef,
-        MatSort,
-        MatSortHeader,
-        NgForOf,
-        NgIf,
-        RouterLink,
-        MatIconAnchor,
-        MatIcon,
-        MatIconButton,
-        DisplayActionButtonsPipe,
-        MatButton,
-        MatTooltip,
-        MatFormField,
-        MatInput,
-        SidbarComponent,
-    ],
+  imports: [
+    MatTabGroup,
+    MatTab,
+    MatTable,
+    MatPaginator,
+    MatHeaderRow,
+    MatRow,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatSort,
+    MatSortHeader,
+    NgForOf,
+    NgIf,
+    RouterLink,
+    MatIconAnchor,
+    MatIcon,
+    MatIconButton,
+    DisplayActionButtonsPipe,
+    MatButton,
+    MatTooltip,
+    MatFormField,
+    MatInput,
+    SidbarComponent,
+  ],
   templateUrl: './users-admin.component.html',
   styleUrl: './users-admin.component.scss'
 })
-export class UsersAdminComponent implements AfterViewInit, OnInit{
+export class UsersAdminComponent implements AfterViewInit, OnInit {
 
   fileUrl: string | null = null;
 
   private _liveAnnouncer = inject(LiveAnnouncer);
   private dmtService = inject(DmtService);
 
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // displayedColumns: string[] = [];
   displayedColumns: string[] = DmtDTO.getAttributeNames();
-
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSource! : MatTableDataSource<DmtDTO, MatPaginator>;
+  dataSource!: MatTableDataSource<DmtDTO, MatPaginator>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -79,11 +75,10 @@ export class UsersAdminComponent implements AfterViewInit, OnInit{
 
   ngOnInit() {
     this.loadData();
-    if (!this.displayedColumns.includes('Fichier')) {
-      this.displayedColumns.push('Fichier');
-    }
+    // if (!this.displayedColumns.includes('Fichier')) {
+    //   this.displayedColumns.push('Fichier');
+    // }
   }
-
 
 
   downloadFile(id: number): void {
@@ -176,7 +171,6 @@ export class UsersAdminComponent implements AfterViewInit, OnInit{
   }
 
 
-
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -185,15 +179,15 @@ export class UsersAdminComponent implements AfterViewInit, OnInit{
     }
   }
 
-  handleDelete(element : any) {
+  handleDelete(element: any) {
 
   }
 
-  editElement(element : any) {
+  editElement(element: any) {
 
   }
 
-  deleteElement(element : any) {
+  deleteElement(element: any) {
 
   }
 

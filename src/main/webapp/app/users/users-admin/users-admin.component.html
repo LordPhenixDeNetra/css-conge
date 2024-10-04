@@ -66,24 +66,16 @@
                     <div class="card-body">
                         <div class="table-responsive">
 
-
-
-
-
-
                             <div class="mat-elevation-z8">
                                 <mat-form-field>
-                                    <!--                <mat-label>Filter</mat-label>-->
                                     <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher !" #input>
                                 </mat-form-field>
                                 <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
                                     <ng-container *ngFor="let title of displayedColumns" [matColumnDef]="title">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ title }}</th>
                                         <td mat-cell *matCellDef="let element">
-                        <span>
-                            {{ element[title] }}
-                        </span>
-                                            <div class="d-flex" *ngIf="element[title] == null || element[title] == '' ">
+                                        <span>{{ element[title] }}</span>
+                                            <div class="d-flex" *ngIf="(element[title] == null || element[title] == '') && title != 'Actions' ">
                                                 <button mat-icon-button
                                                         matTooltip="Télécharger!"
                                                         aria-label="Boutton Pour télécharger"
@@ -98,10 +90,14 @@
                                                         (click)="viewFile(element.id)">
                                                     <mat-icon>visibility</mat-icon>
                                                 </button>
-                                                <button mat-icon-button (click)="viewFileInIframe(element.id)">
-                                                    <mat-icon>open_in_browser</mat-icon>
-                                                </button>
+<!--                                                <button mat-icon-button (click)="viewFileInIframe(element.id)">-->
+<!--                                                    <mat-icon>open_in_browser</mat-icon>-->
+<!--                                                </button>-->
                                             </div>
+                                            <div class="d-flex" *ngIf="title == 'Actions' ">
+                                                <span>SSS</span>
+                                            </div>
+
                                         </td>
                                     </ng-container>
 
@@ -129,49 +125,6 @@
 
                                 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                             </div>
-
-
-
-<!--                            <table class="table">-->
-<!--                                <thead>-->
-<!--                                <tr>-->
-<!--                                    <th>ID</th>-->
-<!--                                    <th>Utilisateur</th>-->
-<!--                                    <th>Action</th>-->
-<!--                                    <th>Date</th>-->
-<!--                                    <th>Statut</th>-->
-<!--                                </tr>-->
-<!--                                </thead>-->
-<!--                                <tbody>-->
-<!--                                <tr>-->
-<!--                                    <td>#12345</td>-->
-<!--                                    <td>Jean Dupont</td>-->
-<!--                                    <td>Nouvelle demande</td>-->
-<!--                                    <td>01/10/2024</td>-->
-<!--                                    <td><span class="badge bg-success">Approuvé</span></td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <td>#12346</td>-->
-<!--                                    <td>Marie Martin</td>-->
-<!--                                    <td>Mise à jour profil</td>-->
-<!--                                    <td>01/10/2024</td>-->
-<!--                                    <td><span class="badge bg-info">En cours</span></td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <td>#12347</td>-->
-<!--                                    <td>Paul Dubois</td>-->
-<!--                                    <td>Changement allocation</td>-->
-<!--                                    <td>30/09/2024</td>-->
-<!--                                    <td><span class="badge bg-warning">En attente</span></td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-
-
-
-
-
-
 
                         </div>
                     </div>

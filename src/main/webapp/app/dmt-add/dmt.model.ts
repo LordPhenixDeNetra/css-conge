@@ -23,12 +23,14 @@ export class DmtDTO {
       'nin',
       'prenom',
       'nom',
-      'dateNaissane',
-      'lieuNaissance',
-      'adresse',
+      // 'dateNaissane',
+      // 'lieuNaissance',
+      // 'adresse',
       'email',
       'telephone1',
-      // 'document'
+      'Fichier',
+      'Actions'
+      // 'document',
     ]
   }
 
