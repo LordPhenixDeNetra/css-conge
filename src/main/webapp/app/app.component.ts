@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationStart, Router, RouterLink, RouterOutlet } from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router, RouterLink, RouterOutlet} from '@angular/router';
 import { HeaderComponent } from 'app/common/header/header.component';
 
 
@@ -14,6 +14,7 @@ import { HeaderComponent } from 'app/common/header/header.component';
 export class AppComponent implements OnInit {
 
   router = inject(Router);
+  activatedRoute = inject(ActivatedRoute)
 
   msgSuccess = null;
   msgInfo = null;
@@ -28,6 +29,13 @@ export class AppComponent implements OnInit {
         this.msgError = navigationState?.['msgError'] || null;
       }
     });
+
+    this.shouldShowNavbar();
+  }
+
+  shouldShowNavbar(): boolean {
+    const routeData = this.activatedRoute.firstChild?.snapshot.data['showNavbar'];
+    return routeData !== false; // Afficher la navbar si showNavbar n'est pas explicitement false
   }
 
 }

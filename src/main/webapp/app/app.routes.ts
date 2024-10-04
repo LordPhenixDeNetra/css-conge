@@ -95,6 +95,7 @@ export const routes: Routes = [
   {
     path: 'salarierInfo/info/:id',
     component: SalarierInfoComponent,
+    data: { showNavbar: false },
     title: $localize`:@@salarierInfo.info.headline:Congés Info`
   },
 
@@ -107,6 +108,7 @@ export const routes: Routes = [
   {
     path: 'users-admin',
     component: UsersAdminComponent,
+    data: { showNavbar: false },
     title: $localize`:@@dmt.add.headline:Admin`
   },
 

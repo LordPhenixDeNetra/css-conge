@@ -1,4 +1,6 @@
-<app-header />
+<ng-container *ngIf="shouldShowNavbar()">
+    <app-header />
+</ng-container>
 
 <main class="">
 <!--<main>-->
