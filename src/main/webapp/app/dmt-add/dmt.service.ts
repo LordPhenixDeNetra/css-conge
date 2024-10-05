@@ -68,8 +68,8 @@ export class DmtService {
     return this.http.put<number>(this.resourcePath + '/' + id, dmtDTO);
   }
 
-  deleteDmt(id: number) {
-    return this.http.delete(this.resourcePath + '/' + id);
+  deleteDmt(id: number, sendMessage : number) {
+    return this.http.delete(this.resourcePath + '/' + id + '/send/' + sendMessage);
   }
 
   // getSiteValues() {

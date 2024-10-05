@@ -10,6 +10,7 @@ import sn.css.c_s_s_conge.domain.Dossier;
 import sn.css.c_s_s_conge.model.DmtDTO;
 import sn.css.c_s_s_conge.model.DossierDTO;
 import sn.css.c_s_s_conge.repos.DmtRepository;
+import sn.css.c_s_s_conge.service.interfaces.EmailService;
 import sn.css.c_s_s_conge.util.NotFoundException;
 import sn.css.c_s_s_conge.util.ReferencedWarning;
 
@@ -30,13 +31,15 @@ import java.util.UUID;
 public class DmtService {
 
     private final DmtRepository dmtRepository;
+    private final EmailService emailService;
 
     // Répertoire de téléchargement des images, défini dans application.properties
     @Value("${file.upload.dmt}")
     private String fileUploadDmt;
 
-    public DmtService(final DmtRepository dmtRepository) {
+    public DmtService(final DmtRepository dmtRepository, EmailService emailService) {
         this.dmtRepository = dmtRepository;
+        this.emailService = emailService;
     }
 
     /**
@@ -134,8 +137,15 @@ public class DmtService {
      *
      * @param id L'identifiant de la DMT à supprimer.
      */
-    public void delete(final Long id) {
-        dmtRepository.deleteById(id);
+    public void delete(final Long id, final int sendMessage) {
+        Dmt dmt = dmtRepository.findById(id).get() ;
+        if(dmt != null){
+            dmtRepository.deleteById(id);
+        }
+        if(sendMessage == 1){
+            emailService.sendMessageForDMTNotValidation("Madame " + dmt.getPrenom() + " " + dmt.getNom(),
+                dmt.getEmail());
+        }
     }
 
     /**

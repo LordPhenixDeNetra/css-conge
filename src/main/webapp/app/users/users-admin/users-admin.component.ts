@@ -197,7 +197,7 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.dmtService.deleteDmt(id).subscribe(
+        this.dmtService.deleteDmt(id, 1).subscribe(
           value => {
             this.toast.success("DMT invalidé avec succés\n" +
               "l'allocataire sera notifier", "Invalidation de la DMT",{

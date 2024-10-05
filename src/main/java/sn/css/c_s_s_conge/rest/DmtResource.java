@@ -138,14 +138,14 @@ public class DmtResource {
      *
      * @param id L'identifiant de la DMT à supprimer.
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/send/{sendMessage}")
     @ApiResponse(responseCode = "204")
-    public ResponseEntity<Void> deleteDmt(@PathVariable(name = "id") final Long id) {
+    public ResponseEntity<Void> deleteDmt(@PathVariable(name = "id") final Long id, @PathVariable(name = "sendMessage") final int sendMessage) {
         final ReferencedWarning referencedWarning = dmtService.getReferencedWarning(id);
         if (referencedWarning != null) {
             throw new ReferencedException(referencedWarning);
         }
-        dmtService.delete(id);
+        dmtService.delete(id, sendMessage);
         return ResponseEntity.noContent().build();
     }
 

@@ -125,7 +125,7 @@ public class NUserService {
 
         Salarier salarier = salarierRepository.save(salarierService.mapToEntity(salarierDTO, new Salarier()));
 
-        dmtService.delete(dmtDTO.getId());
+        dmtService.delete(dmtDTO.getId(), 0);
 
         emailService.sendMessageForDMTValidation("Madame " + dmtDTO.getPrenom() + " " + dmtDTO.getNom(),
             dmtDTO.getEmail());
@@ -133,11 +133,6 @@ public class NUserService {
         return salarier.getId();
 
     }
-
-    public void invalidateDMT(DmtDTO dmtDTO){
-        dmtService.delete(dmtDTO.getId());
-    }
-
 
     /**
      * Mappe une entité NUser vers un DTO NUserDTO.
