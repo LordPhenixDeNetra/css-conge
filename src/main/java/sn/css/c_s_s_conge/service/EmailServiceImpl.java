@@ -20,6 +20,8 @@ import sn.css.c_s_s_conge.util.EmailUtils;
 public class EmailServiceImpl implements EmailService {
 
     public static final String NEW_USER_ACCOUNT_VERIFICATION = "Demande de congé de maternité";
+    public static final String DMT_VALIDATION = "Validation de DMT";
+    public static final String DMT_NON_VALIDATION = "Non Validation de DMT";
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -45,6 +47,56 @@ public class EmailServiceImpl implements EmailService {
             message.setFrom(fromEmail);
             message.setTo(to);
             message.setText(EmailUtils.getSimpleMessage(name, status));
+
+            emailSender.send(message);
+        } catch (Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
+
+    /**
+     * Envoie un message email avec le statut fourni.
+     * <p>
+     * Cette méthode est exécutée de manière asynchrone pour éviter de bloquer le thread appelant.
+     * </p>
+     *
+     * @param name   Nom du destinataire.
+     * @param to     Adresse email du destinataire.
+     */
+    @Async
+    @Override
+    public void sendMessageForDMTValidation(String name, String to) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setSubject(DMT_VALIDATION);
+            message.setFrom(fromEmail);
+            message.setTo(to);
+            message.setText(EmailUtils.getSimpleMessageForDMTValidation(name));
+
+            emailSender.send(message);
+        } catch (Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
+
+    /**
+     * Envoie un message email avec le statut fourni.
+     * <p>
+     * Cette méthode est exécutée de manière asynchrone pour éviter de bloquer le thread appelant.
+     * </p>
+     *
+     * @param name   Nom du destinataire.
+     * @param to     Adresse email du destinataire.
+     */
+    @Async
+    @Override
+    public void sendMessageForDMTNotValidation(String name, String to) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setSubject(DMT_NON_VALIDATION);
+            message.setFrom(fromEmail);
+            message.setTo(to);
+            message.setText(EmailUtils.getSimpleMessageForDMTNonValidation(name));
 
             emailSender.send(message);
         } catch (Exception exception) {

@@ -40,12 +40,6 @@ export class LoginAdminComponent implements OnInit{
     if (this.loginForm.valid){
       let emailAdmin = this.loginForm.value.email!;
       let passwordAdmin = this.loginForm.value.password!;
-      // let passwordAdmin = this.hashService.hashString(this.loginForm.value.password!);
-
-      // let testPass = this.hashService.hashString("Passer123")
-      // let testPass = "$2a$12$2U9/xgB9UsqKsjAGUOg5XONX7a8Gz40y527kxKhWhkZiY3rREsOrq"
-      //
-      // console.log("PWD : ",passwordAdmin)
 
       this.userService.loginAdmin(emailAdmin, passwordAdmin).subscribe(
         userResponse => {

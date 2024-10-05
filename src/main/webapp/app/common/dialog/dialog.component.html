@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Confirmation de {{actionTitle}}</h2>
+
+<mat-dialog-content *ngIf="action === 'delete'">
+    Êtes-vous sûr de vouloir {{actionVerb}} cet element ?
+</mat-dialog-content>
+<mat-dialog-content *ngIf="action === 'modify'">
+    Êtes-vous sûr de vouloir {{actionVerb}} cet element ?
+</mat-dialog-content>
+<mat-dialog-content *ngIf="action !== 'delete' && action !== 'modify'">
+    Êtes-vous sûr de vouloir {{actionVerb}} cet action ?
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Annuler</button>
+    <button mat-button color="warn" (click)="onConfirm()">{{actionVerb | titlecase}}</button>
+</mat-dialog-actions>

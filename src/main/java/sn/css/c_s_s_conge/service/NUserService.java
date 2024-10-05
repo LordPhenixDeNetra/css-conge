@@ -4,9 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sn.css.c_s_s_conge.domain.NUser;
+import sn.css.c_s_s_conge.domain.Salarier;
+import sn.css.c_s_s_conge.model.DemandeStatus;
+import sn.css.c_s_s_conge.model.DmtDTO;
 import sn.css.c_s_s_conge.model.NUserDTO;
+import sn.css.c_s_s_conge.model.SalarierDTO;
+import sn.css.c_s_s_conge.repos.DmtRepository;
 import sn.css.c_s_s_conge.repos.NUserRepository;
+import sn.css.c_s_s_conge.repos.SalarierRepository;
+import sn.css.c_s_s_conge.service.interfaces.EmailService;
 import sn.css.c_s_s_conge.util.NotFoundException;
 
 import java.util.List;
@@ -22,8 +30,13 @@ import java.util.List;
 public class NUserService {
 
     private final NUserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final SalarierRepository salarierRepository;
 
+    private final SalarierService salarierService;
+    private final DmtService dmtService;
+    private final EmailService emailService;
+
+    private final PasswordEncoder passwordEncoder;
     /**
      * Crée un nouveau User à partir d'un DTO.
      *
@@ -93,6 +106,36 @@ public class NUserService {
     // Pour créer un nouveau hash lors de l'inscription
     public String hashPassword(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
+    }
+
+    @Transactional
+    public Long validateDMT(DmtDTO dmtDTO){
+
+        SalarierDTO salarierDTO = new SalarierDTO();
+
+        salarierDTO.setNom(dmtDTO.getNom());
+        salarierDTO.setPrenom(dmtDTO.getPrenom());
+        salarierDTO.setNin(dmtDTO.getNin());
+        salarierDTO.setEmail(dmtDTO.getEmail());
+        salarierDTO.setAdresse(dmtDTO.getAdresse());
+        salarierDTO.setNumArticleL143(dmtDTO.getNumArticleL143());
+        salarierDTO.setTelephone1(dmtDTO.getTelephone1());
+        salarierDTO.setDateNaissane(dmtDTO.getDateNaissane());
+        salarierDTO.setLieuNaissance(dmtDTO.getLieuNaissance());
+
+        Salarier salarier = salarierRepository.save(salarierService.mapToEntity(salarierDTO, new Salarier()));
+
+        dmtService.delete(dmtDTO.getId());
+
+        emailService.sendMessageForDMTValidation("Madame " + dmtDTO.getPrenom() + " " + dmtDTO.getNom(),
+            dmtDTO.getEmail());
+
+        return salarier.getId();
+
+    }
+
+    public void invalidateDMT(DmtDTO dmtDTO){
+        dmtService.delete(dmtDTO.getId());
     }
 
 

@@ -5,6 +5,7 @@ import { SalarierDTO } from 'app/salarier/salarier.model';
 import {map, Observable} from 'rxjs';
 import { transformRecordToMap } from 'app/common/utils';
 import {NUserDTO} from "./user.model";
+import {DmtDTO} from "../dmt-add/dmt.model";
 
 
 @Injectable({
@@ -19,6 +20,10 @@ export class UserService {
   loginAdmin(email: string, password: string): Observable<NUserDTO> {
     const loginRequest = { email, password };
     return this.http.post<NUserDTO>(this.resourcePath + '/login', loginRequest);
+  }
+
+  validateDMT(dmtDTO : DmtDTO) {
+    return this.http.post<number>(this.resourcePath + '/validateDMT', dmtDTO)
   }
 
   // loginAdmin(email: string, password: string) {

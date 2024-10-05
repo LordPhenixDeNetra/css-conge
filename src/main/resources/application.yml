@@ -33,6 +33,9 @@ spring:
     port: 587
     username: netrathior@gmail.com
     password: ckltchxqjifbvoif
+
+#    username: congescss@gmail.com
+#    password: nhyfehdqxedyxxf
     default-encoding: UTF-8
     properties:
       mail:

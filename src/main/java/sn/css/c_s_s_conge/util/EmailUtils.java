@@ -12,6 +12,13 @@ public class EmailUtils {
     }
 
     public static String getSimpleMessage(String name, String status){
-        return "Salut " + name +"\n\n Votre demande a été envoyer avec succé de congé et elle est " + status + "\n\nL'equipe CSS";
+        return "Salut " + name +"\n\n Votre demande de congé a été envoyer avec succés et elle est " + status + "\n\nL'equipe CSS";
+    }
+
+    public static String getSimpleMessageForDMTValidation(String name){
+        return "Salut " + name +"\n\n Votre DMT a été valider avec succés vous pouvez faire votre demande" + "\n\nL'equipe CSS";
+    }
+    public static String getSimpleMessageForDMTNonValidation(String name){
+        return "Salut " + name +"\n\n Votre DMT n'a été valider veuillez refaire l'envoi des informations tout en les vérifiant" + "\n\nL'equipe CSS";
     }
 }

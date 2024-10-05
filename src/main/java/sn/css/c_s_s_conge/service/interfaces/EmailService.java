@@ -16,4 +16,20 @@ public interface EmailService {
      * @param status Statut à inclure dans le message email.
      */
     void sendMessage(String name, String to, String status);
+
+    /**
+     * Envoie un message email avec la confirmation du DMT.
+     *
+     * @param name   Nom du destinataire.
+     * @param to     Adresse email du destinataire.
+     */
+    void sendMessageForDMTValidation(String name, String to);
+
+    /**
+     * Envoie un message email avec un statut.
+     *
+     * @param name   Nom du destinataire.
+     * @param to     Adresse email du destinataire.
+     */
+    void sendMessageForDMTNotValidation(String name, String to);
 }

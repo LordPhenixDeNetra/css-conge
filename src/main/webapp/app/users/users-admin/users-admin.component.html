@@ -99,14 +99,14 @@
                                                         matTooltip="Valider!"
                                                         aria-label="Boutton Pour Valider"
                                                         matTooltipPosition="above"
-                                                        (click)="downloadFile(element.id)">
+                                                        (click)="validateDMT(element)">
                                                     <mat-icon class="text-success" >check_circle</mat-icon>
                                                 </button>
                                                 <button mat-icon-button
                                                         matTooltip="Invalider!"
                                                         aria-label="Boutton Pour Ivalider"
                                                         matTooltipPosition="above"
-                                                        (click)="downloadFile(element.id)">
+                                                        (click)="invalidateDMT(element.id)">
                                                     <mat-icon class="text-danger" >cancel</mat-icon>
                                                 </button>
                                             </div>

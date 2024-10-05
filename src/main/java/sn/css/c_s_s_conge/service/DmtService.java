@@ -146,7 +146,7 @@ public class DmtService {
      * @return Le DTO rempli.
      */
 
-    private DmtDTO mapToDTO(final Dmt dmt, final DmtDTO dmtDTO) {
+    public DmtDTO mapToDTO(final Dmt dmt, final DmtDTO dmtDTO) {
 
         dmtDTO.setId(dmt.getId());
         dmtDTO.setNumArticleL143(dmt.getNumArticleL143());
@@ -169,7 +169,7 @@ public class DmtService {
      * @param dmtDTO Le DTO à convertir.
      * @param dmt    L'entité à remplir.
      */
-    private Dmt mapToEntity(final DmtDTO dmtDTO, final Dmt dmt) {
+    public Dmt mapToEntity(final DmtDTO dmtDTO, final Dmt dmt) {
 
         dmt.setNumArticleL143(dmtDTO.getNumArticleL143());
         dmt.setNin(dmtDTO.getNin());

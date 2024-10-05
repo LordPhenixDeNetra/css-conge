@@ -108,7 +108,7 @@ public class SalarierService {
      * @param salarierDTO Le DTO cible.
      * @return Le DTO mappé.
      */
-    private SalarierDTO mapToDTO(final Salarier salarier, final SalarierDTO salarierDTO) {
+    public SalarierDTO mapToDTO(final Salarier salarier, final SalarierDTO salarierDTO) {
         salarierDTO.setId(salarier.getId());
         salarierDTO.setNumArticleL143(salarier.getNumArticleL143());
         salarierDTO.setNin(salarier.getNin());
@@ -137,7 +137,7 @@ public class SalarierService {
      * @return L'entité mappée.
      * @throws NotFoundException si le site associé n'est pas trouvé.
      */
-    private Salarier mapToEntity(final SalarierDTO salarierDTO, final Salarier salarier) {
+    public Salarier mapToEntity(final SalarierDTO salarierDTO, final Salarier salarier) {
         salarier.setNumArticleL143(salarierDTO.getNumArticleL143());
         salarier.setNin(salarierDTO.getNin());
         salarier.setPrenom(salarierDTO.getPrenom());

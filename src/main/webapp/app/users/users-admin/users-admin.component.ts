@@ -23,6 +23,12 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {SidbarComponent} from "../../common/sidbar/sidbar.component";
+import {DialogComponent} from "../../common/dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {SalarierDTO} from "../../salarier/salarier.model";
+import {UserService} from "../user.service";
+import {ToastrService} from "ngx-toastr";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-users-admin',
@@ -65,6 +71,10 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
 
   private _liveAnnouncer = inject(LiveAnnouncer);
   private dmtService = inject(DmtService);
+  private dialog = inject(MatDialog);
+  private userService = inject(UserService);
+  private toast = inject(ToastrService);
+
 
   lenDemande = 0
 
@@ -140,22 +150,6 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
       });
   }
 
-
-  generateActionButtons(id: number): string {
-    return `
-    <button mat-icon-button (click)="downloadFile(${id})">
-      <mat-icon>download</mat-icon>
-    </button>
-    <button mat-icon-button (click)="viewFile(${id})">
-      <mat-icon>visibility</mat-icon>
-    </button>
-    <button mat-icon-button (click)="viewFileInIframe(${id})">
-      <mat-icon>open_in_browser</mat-icon>
-    </button>
-  `;
-  }
-
-
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -171,6 +165,56 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  validateDMT(element : DmtDTO) {
+    const dialogRef = this.dialog.open(DialogComponent,{
+      data: {action: "validate"},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.userService.validateDMT(element).subscribe(
+          value => {
+            this.toast.success("DMT Validé avec succés\n" +
+              "l'allocataire sera notifier", "Validation de la DMT",{
+              // timeOut: 10000,
+              // progressBar:true,
+
+            });
+            console.log(value)
+            this.loadData();
+          },
+          error => {
+
+          }
+
+        );
+      }
+    });
+  }
+  invalidateDMT(id : number) {
+    const dialogRef = this.dialog.open(DialogComponent,{
+      data: {action: "invalidate"},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.dmtService.deleteDmt(id).subscribe(
+          value => {
+            this.toast.success("DMT invalidé avec succés\n" +
+              "l'allocataire sera notifier", "Invalidation de la DMT",{
+              // timeOut: 10000,
+              // progressBar:true,
+
+            });
+            console.log(value)
+            this.loadData();
+          },
+          error => {
+
+          }
+        );
+      }
+    });
+  }
 }
 
 /*
