@@ -18,6 +18,9 @@ import {DmtAddComponent} from "./dmt-add/dmt-add.component";
 import {UsersAdminComponent} from "./users/users-admin/users-admin.component";
 import {SidbarComponent} from "./common/sidbar/sidbar.component";
 import {LoginAdminComponent} from "./users/login-admin/login-admin.component";
+import {SalarierAuthGuard} from "./guard/salaier-auth.guard";
+import {IsSalarierNotUsurpationGuard} from "./guard/is-salarier-guard.guard";
+import {AdminAuthGuard} from "./guard/admin-auth.guard";
 
 
 export const routes: Routes = [
@@ -26,36 +29,42 @@ export const routes: Routes = [
     component: HomeComponent,
     title: $localize`:@@home.index.headline:Welcome to your new app!`
   },
-  {
-    path: 'salariers',
-    component: SalarierListComponent,
-    title: $localize`:@@salarier.list.headline:Salariers`
-  },
-  {
-    path: 'salariers/add',
-    component: SalarierAddComponent,
-    title: $localize`:@@salarier.add.headline:Add Salarier`
-  },
-  {
-    path: 'salariers/edit/:id',
-    component: SalarierEditComponent,
-    title: $localize`:@@salarier.edit.headline:Edit Salarier`
-  },
-  {
-    path: 'sites',
-    component: SiteListComponent,
-    title: $localize`:@@site.list.headline:Sites`
-  },
-  {
-    path: 'sites/add',
-    component: SiteAddComponent,
-    title: $localize`:@@site.add.headline:Add Site`
-  },
-  {
-    path: 'sites/edit/:id',
-    component: SiteEditComponent,
-    title: $localize`:@@site.edit.headline:Edit Site`
-  },
+
+
+  // {
+  //   path: 'salariers',
+  //   component: SalarierListComponent,
+  //   title: $localize`:@@salarier.list.headline:Salariers`
+  // },
+  // {
+  //   path: 'salariers/add',
+  //   component: SalarierAddComponent,
+  //   title: $localize`:@@salarier.add.headline:Add Salarier`
+  // },
+  // {
+  //   path: 'salariers/edit/:id',
+  //   component: SalarierEditComponent,
+  //   title: $localize`:@@salarier.edit.headline:Edit Salarier`
+  // },
+
+
+  // {
+  //   path: 'sites',
+  //   component: SiteListComponent,
+  //   title: $localize`:@@site.list.headline:Sites`
+  // },
+  // {
+  //   path: 'sites/add',
+  //   component: SiteAddComponent,
+  //   title: $localize`:@@site.add.headline:Add Site`
+  // },
+  // {
+  //   path: 'sites/edit/:id',
+  //   component: SiteEditComponent,
+  //   title: $localize`:@@site.edit.headline:Edit Site`
+  // },
+
+
   {
     path: 'dossiers',
     component: DossierListComponent,
@@ -64,11 +73,13 @@ export const routes: Routes = [
   {
     path: 'dossiers/add/:id',
     component: DossierAddComponent,
+    canActivate: [IsSalarierNotUsurpationGuard],
     title: $localize`:@@dossier.add.headline:Add Dossier`
   },
   {
     path: 'dossiers/edit/:id',
     component: DossierEditComponent,
+    canActivate: [IsSalarierNotUsurpationGuard],
     title: $localize`:@@dossier.edit.headline:Edit Dossier`
   },
   {
@@ -76,11 +87,13 @@ export const routes: Routes = [
     component: DemandeCongeListComponent,
     title: $localize`:@@demandeConge.list.headline:Demande Conges`
   },
+
   // {
   //   path: 'demandeConges/add',
   //   component: DemandeCongeAddComponent,
   //   title: $localize`:@@demandeConge.add.headline:Add Demande Conge`
   // },
+
   {
     path: 'demandeConges/add/:id',
     component: DemandeCongeAddComponent,
@@ -95,6 +108,7 @@ export const routes: Routes = [
   {
     path: 'salarierInfo/info/:id',
     component: SalarierInfoComponent,
+    canActivate: [IsSalarierNotUsurpationGuard],
     data: { showNavbar: false },
     title: $localize`:@@salarierInfo.info.headline:Congés Info`
   },
@@ -108,6 +122,7 @@ export const routes: Routes = [
   {
     path: 'users-admin',
     component: UsersAdminComponent,
+    canActivate: [AdminAuthGuard],
     data: { showNavbar: false },
     title: $localize`:@@dmt.add.headline:Admin`
   },
@@ -118,11 +133,11 @@ export const routes: Routes = [
     title: $localize`:@@admin.login.headline:LoginAdmin`
   },
 
-  {
-    path: 'sidebar',
-    component: SidbarComponent,
-    // title: $localize`:@@dm.add.headline:Admin`
-  },
+  // {
+  //   path: 'sidebar',
+  //   component: SidbarComponent,
+  //   // title: $localize`:@@dm.add.headline:Admin`
+  // },
 
   {
     path: 'error',

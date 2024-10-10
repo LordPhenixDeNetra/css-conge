@@ -59,6 +59,7 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
   salarierDemande : any | null; // Variable pour stocker les information sur la demande
   demandeId : number | null;
   reloadable! : string | null;
+
   // readonly panelOpenState = signal(false)
 
   viewInit : boolean = false;
@@ -99,7 +100,7 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
 
   constructor(private router: Router,
               private demandeCongeService : DemandeCongeService,
-              private salarierMessage : NMessageService
+              private salarierMessage : NMessageService,
               ) {
 
     const navigation = this.router.getCurrentNavigation();
@@ -123,6 +124,9 @@ export class SalarierInfoComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
+
+
+
     this.viewInit = true;
     let salarierData = localStorage.getItem('salarier');
     let demandeData : string = String(localStorage.getItem('demandeConge'));

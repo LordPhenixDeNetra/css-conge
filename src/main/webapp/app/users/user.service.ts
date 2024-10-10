@@ -6,6 +6,7 @@ import {map, Observable} from 'rxjs';
 import { transformRecordToMap } from 'app/common/utils';
 import {NUserDTO} from "./user.model";
 import {DmtDTO} from "../dmt-add/dmt.model";
+import { ActivatedRoute } from '@angular/router';
 
 
 @Injectable({
@@ -16,6 +17,9 @@ export class UserService {
   http = inject(HttpClient);
   resourcePath = environment.apiPath + '/api/user';
 
+  constructor(private route: ActivatedRoute) {
+  }
+
   // Méthode pour effectuer le login
   loginAdmin(email: string, password: string): Observable<NUserDTO> {
     const loginRequest = { email, password };
@@ -24,6 +28,10 @@ export class UserService {
 
   validateDMT(dmtDTO : DmtDTO) {
     return this.http.post<number>(this.resourcePath + '/validateDMT', dmtDTO)
+  }
+
+  isAdminLoggedIn() {
+    return sessionStorage.getItem("admin") != null;
   }
 
   // loginAdmin(email: string, password: string) {

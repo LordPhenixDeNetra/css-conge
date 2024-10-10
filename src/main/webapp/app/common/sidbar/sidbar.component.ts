@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRouteSnapshot, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidbar',
@@ -15,12 +15,30 @@ export class SidbarComponent implements OnInit{
   ngOnInit() {
   }
 
-  handleLogoutSalarier() {
-    localStorage.removeItem("demandeConge");
-    localStorage.removeItem("firstReload");
-    localStorage.removeItem("reloadable");
-    localStorage.removeItem("salarier");
-    this.router.navigate([``]);
+  handleLogout() {
+
+    if(this.router.url.includes("/salarierInfo/info/")){
+      console.log("/salarierInfo/info/")
+
+      localStorage.removeItem("demandeConge");
+      localStorage.removeItem("firstReload");
+      localStorage.removeItem("reloadable");
+      localStorage.removeItem("salarier");
+      this.router.navigate([``]);
+    }
+
+    if(this.router.url.includes("/users-admin")){
+      console.log("/users-admin")
+
+      sessionStorage.removeItem("admin");
+      this.router.navigate([``]);
+    }
+
+    // localStorage.removeItem("demandeConge");
+    // localStorage.removeItem("firstReload");
+    // localStorage.removeItem("reloadable");
+    // localStorage.removeItem("salarier");
+    // this.router.navigate([``]);
 
   }
 }
