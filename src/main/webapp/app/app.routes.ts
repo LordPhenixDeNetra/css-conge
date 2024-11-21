@@ -21,6 +21,7 @@ import {LoginAdminComponent} from "./users/login-admin/login-admin.component";
 import {SalarierAuthGuard} from "./guard/salaier-auth.guard";
 import {IsSalarierNotUsurpationGuard} from "./guard/is-salarier-guard.guard";
 import {AdminAuthGuard} from "./guard/admin-auth.guard";
+import {NMessageComponent} from "./nmessage/nmessage.component";
 
 
 export const routes: Routes = [
@@ -131,6 +132,15 @@ export const routes: Routes = [
     path: 'login-admin',
     component: LoginAdminComponent,
     title: $localize`:@@admin.login.headline:LoginAdmin`
+  },
+
+  {
+    path: 'salarierInfo/info/:id/messages',
+    // component: SalarierInfoComponent,
+    component: NMessageComponent,
+    canActivate: [IsSalarierNotUsurpationGuard],
+    data: { showNavbar: false },
+    title: $localize`:@@salarierInfo.info.headline:Messages`
   },
 
   // {

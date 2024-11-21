@@ -77,8 +77,8 @@ export class HomeComponent implements OnInit{
               console.log("DEMANDE JSON DATA", this.demandeJsonData.id)
 
               this.demandeJsonDataId =  this.demandeJsonData.id!;
-              this.router.navigate([`/salarierInfo/info/${salarierId}`], { state: { demandeId: this.demandeJsonDataId}});
 
+              this.router.navigate([`/salarierInfo/info/${salarierId}`], { state: { demandeId: this.demandeJsonDataId}});
             }
           )
 

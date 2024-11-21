@@ -29,6 +29,10 @@ import {SalarierDTO} from "../../salarier/salarier.model";
 import {UserService} from "../user.service";
 import {ToastrService} from "ngx-toastr";
 import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
+import {DemandeCongeService} from "../../demande-conge/demande-conge.service";
+import {DemandeCongeDTO} from "../../demande-conge/demande-conge.model";
+import {DossierService} from "../../dossier/dossier.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-users-admin',
@@ -73,13 +77,17 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
   private dmtService = inject(DmtService);
   private dialog = inject(MatDialog);
   private userService = inject(UserService);
+  private dossierService = inject(DossierService);
   private toast = inject(ToastrService);
+  private demandeCongeService = inject(DemandeCongeService);
 
 
   lenDemande = 0
 
   displayedColumns: string[] = DmtDTO.getAttributeNames();
+  displayedDemandeColumns: string[] = DemandeCongeDTO.getAttributeNames();
   dataSource!: MatTableDataSource<DmtDTO, MatPaginator>;
+  demandeDataSource!: MatTableDataSource<DemandeCongeDTO, MatPaginator>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -87,11 +95,8 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.loadData();
-    // if (!this.displayedColumns.includes('Fichier')) {
-    //   this.displayedColumns.push('Fichier');
-    // }
+    this.loadDataDemandeConge();
   }
-
 
   downloadFile(id: number): void {
     this.dmtService.getFile(id).subscribe(blob => {
@@ -114,6 +119,34 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     });
   }
 
+  openFilesDossierInNewTabs(id: number): void {
+    let fileUrls: string[] = [];
+    let baseUrl = environment.apiPath + '/api/dossiers/getfile/';
+
+    this.dossierService.getDossier(id).subscribe({
+      next: dossier => {
+        // Ajoute les fichiers dans la liste
+        fileUrls.push(baseUrl + dossier.attestationCessationPaie);
+        fileUrls.push(baseUrl + dossier.attestationTravail);
+        fileUrls.push(baseUrl + dossier.certificatMedical);
+        fileUrls.push(baseUrl + dossier.dernierBulletinSalaire);
+        fileUrls.push(baseUrl + dossier.copieCNI);
+
+        console.log(fileUrls)
+
+        // Utilise un délai pour ouvrir chaque fichier
+        fileUrls.forEach((fileUrl, index) => {
+          setTimeout(() => {
+            window.open(fileUrl!, '_blank');
+          }, index * 500); // Ajoute un délai de 500 ms entre chaque ouverture
+        });
+      },
+      error: err => {
+        console.error('Erreur lors de la récupération du dossier', err);
+      }
+    });
+  }
+
   viewFileInIframe(id: number): void {
     this.dmtService.getFile(id).subscribe(blob => {
       const url = window.URL.createObjectURL(blob);
@@ -128,6 +161,21 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
     }
     // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  loadDataDemandeConge(){
+    this.demandeCongeService.getAllDemandeConges().subscribe(
+      {
+        next: (data) =>{
+          this.demandeDataSource = new MatTableDataSource<DemandeCongeDTO>(data);
+          this.demandeDataSource.paginator = this.paginator;
+          this.demandeDataSource.sort = this.sort;
+        },
+        error: (error) => {
+          console.log("Error", error);
+        }
+      }
+    )
   }
 
   loadData() {
@@ -191,6 +239,7 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
       }
     });
   }
+
   invalidateDMT(id : number) {
     const dialogRef = this.dialog.open(DialogComponent,{
       data: {action: "invalidate"},
@@ -215,38 +264,6 @@ export class UsersAdminComponent implements AfterViewInit, OnInit {
       }
     });
   }
+
+
 }
-
-/*
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
-
-*/

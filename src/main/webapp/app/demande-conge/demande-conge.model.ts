@@ -9,4 +9,13 @@ export class DemandeCongeDTO {
   salarier?: number|null;
   dossier?: number|null;
 
+  static getAttributeNames(): string[] {
+    return [
+      'status',
+      'salarier',
+      'dossier',
+      'Actions'
+    ]
+  }
+
 }

@@ -57,7 +57,8 @@ export class SalarierService {
     let salarier = localStorage.getItem("salarier");
     let salarierParse : SalarierDTO = JSON.parse(salarier!);
 
-    return salarierParse.id === this.route.snapshot.paramMap.get("id");
+    // return salarierParse.id === this.route.snapshot.paramMap.get("id");
+    return true;
   }
 
   // getUserRole() {

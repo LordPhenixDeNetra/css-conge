@@ -1,1 +1,64 @@
-<p>nmessage works!</p>
+<app-sidbar></app-sidbar>
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid">
+
+        <!-- Dashboard Overview -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-4 animate-fade-in" style="animation-delay: 0.3s">
+
+<!--                <div class="card dashboard-card bg-warning text-white">-->
+<!--                    <div class="card-body">-->
+<!--                        <ul>-->
+<!--                            <li class="list-group-item">NIN : <span class="badge text-bg-secondary">TEST</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button class="btn btn-success">Retour</button>-->
+            </div>
+            <div class="col-md-6 mb-4 animate-fade-in" style="animation-delay: 0.4s">
+                <div class="card dashboard-card text-white">
+<!--                    <div class="card dashboard-card bg-danger text-white">    -->
+                    <div class="card-body">
+<!--                        <button class="btn btn-success">Retour</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card dashboard-card animate-fade-in" style="animation-delay: 0.5s">
+                    <div class="card-header bg-white">
+                        <button class="btn btn-success">Retour</button>
+                    </div>
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Activités Récentes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+<!--                                    <th>ID</th>-->
+                                    <th>Message</th>
+                                    <th>Sender</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let pan of this.messages">
+<!--                                    <td>{{ pan.id }}</td>-->
+                                    <td>{{ pan.message }}</td>
+                                    <td>{{ pan.user }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

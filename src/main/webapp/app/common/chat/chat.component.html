@@ -1,0 +1,32 @@
+<div class="chat-container">
+    <button class="chat-button" (click)="toggleChat()">💬</button>
+
+    <div *ngIf="isChatOpen" class="chat-window">
+        <div class="chat-header">
+            <span>Support IA - NETRA</span>
+            <button (click)="toggleChat()">✖️</button>
+        </div>
+
+        <div class="chat-messages">
+            <div *ngFor="let message of messages"
+                 [ngClass]="{
+                 'message': true,
+                 'user-message': message.type === 'user',
+                 'bot-message': message.type === 'bot'
+               }">
+                {{ message.text }}
+            </div>
+        </div>
+
+        <div class="message-input-container">
+            <input
+                class="input-message"
+                type="text"
+                [(ngModel)]="currentMessage"
+                (keyup.enter)="sendMessage()"
+                placeholder="Écrivez votre message..."
+            >
+            <button class="submit-message btn btn-success" (click)="sendMessage()">▶️</button>
+        </div>
+    </div>
+</div>

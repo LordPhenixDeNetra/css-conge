@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute, NavigationStart, Router, RouterLink, RouterOutlet} from '@angular/router';
 import { HeaderComponent } from 'app/common/header/header.component';
+import {ChatComponent} from "./common/chat/chat.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, HeaderComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, HeaderComponent, ChatComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
